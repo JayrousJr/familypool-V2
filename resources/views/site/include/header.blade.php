@@ -30,7 +30,7 @@
         <link rel="stylesheet" href="assets/css/stylesheet.css">
         <!-- <link rel="stylesheet" href="assets/css/inputs.css"> -->
         <link rel="stylesheet" href="assets/css/callouts.css">
-        <link rel="icon" href="/storage/images/logo/logo.svg">
+        <link rel="icon" href="/storage/images/logo/logo.png">
         <style>
         /* Center the notification both horizontally and vertically */
         .notify {
@@ -138,7 +138,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
             <div class="container">
                 <a class="navbar-brand" href="{{'/'}}">
-                    <img src="/storage/images/logo/logoblck.svg" style="width: 80px; height: auto" alt="logo"
+                    <img src="/storage/images/logo/logo.png" style="width: 80px; height: auto" alt="logo"
                         class="navbar-brand hvr-wobble-vertical logo_image">
                 </a>
 
