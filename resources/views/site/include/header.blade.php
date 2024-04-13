@@ -138,7 +138,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
             <div class="container">
                 <a class="navbar-brand" href="{{'/'}}">
-                    <img src="/storage/images/logo/logo.png" style="width: 80px; height: auto" alt="logo"
+                    <img src="/storage/images/logo/logo.png" style="width: 70px; height: auto" alt="logo"
                         class="navbar-brand hvr-wobble-vertical">
                 </a>
 
