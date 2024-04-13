@@ -6,6 +6,8 @@ use App\Models\Message;
 use App\Mail\MessageEmail;
 use Illuminate\Http\Request;
 use App\Mail\MessageEmailFeedback;
+use App\Mail\MessageReceived;
+use App\Mail\MessageSent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -39,11 +41,11 @@ class MessageController extends Controller
 
                 session()->flash('message', 'Thanks for Contacting Family Pool Service, Your Message was Sent Successiful!');
 
-                $mailto = 'admin@familypoolserviceonline.com';
+                $mailto = 'info@thefamilypool.com';
 
                 // Email sending
-                Mail::to($mailto)->send(new MessageEmail($formData));
-                Mail::to($formData->email)->send(new MessageEmailFeedback($formData));
+                Mail::to($mailto)->send(new MessageSent($formData));
+                Mail::to($formData->email)->send(new MessageReceived($formData));
                 return redirect('/contact#notification');
             }
         } else {
