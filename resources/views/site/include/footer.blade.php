@@ -17,7 +17,8 @@
 		                    <ul class="ftco-footer-social list-unstyled float-lft mt-5">
 		                        @foreach($socialnetwork as $network)
 		                        <li class="ftco-animate"><a href="{{$network->link}}" target="_blank"><span
-		                                    class="icon-{{$network->icon}}"></span></a>
+		                                    class="icon-{{$network->icon}}">
+										</span></a>
 		                        </li>
 		                        @endforeach
 		                    </ul>
