@@ -1,3 +1,3 @@
 <a href="/">
-    <img src="/storage/images/logo/logoblck.svg" style="width: 100px; height: auto" alt="logo">
+    <img src="/storage/images/logo/logo.png" style="width: 100px; height: auto" alt="logo">
 </a>
