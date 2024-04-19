@@ -62,8 +62,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('apply', [PagesController::class, 'apply'])->name('apply');
-    Route::post('send', [MessageController::class, 'message']);
-    Route::post('request', [ServiceRequestController::class, 'request']);
+    // Route::post('request', [ServiceRequestController::class, 'request']);
     Route::post('/apply_job', [JobApplicantsController::class, 'apply_job'])->name('apply_job');
 });
 
@@ -77,6 +76,7 @@ Route::get('contact', [PagesController::class, 'contact']);
 Route::get('service-request', [PagesController::class, 'askservice'])->name('askservice');
 Route::get('pdf/{record}', PdfController::class)->name('pdf');
 Route::post('request', [ServiceRequestController::class, 'request'])->name('request');
+Route::post('send', [MessageController::class, 'message']);
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // 
