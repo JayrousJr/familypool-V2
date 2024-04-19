@@ -10,6 +10,7 @@ class Visitor extends Model
 {
     use HasFactory, SoftDeletes;
 
+
     protected $fillable = [
         'method', 'request', 'url', 'referer',
         'languages', 'useragent', 'headers',

@@ -59,26 +59,29 @@ class MessageResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->icon('heroicon-m-user')
+                    // ->iconColor('primary')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('subject')
+                    ->copyable()
+                    ->copyMessage('Email address copied')
+                    ->copyMessageDuration(500)
+                    ->icon('heroicon-m-envelope')
+                    // ->iconColor('primary')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Received At')
-                    ->dateTime('D M d, Y')
+                    ->dateTime('D, M Y')
                     ->sortable(),
-                // ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime('D M d, Y')
+                    ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime('D M d, Y')
+                    ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])

@@ -62,14 +62,11 @@ class ServiceRequestResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('city')
+                Tables\Columns\TextColumn::make('service')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('state')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('street')
+                Tables\Columns\TextColumn::make('zip')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
-                    ->toggleable(isToggledHiddenByDefault: true)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('deleted_at')
                     ->dateTime('D M d, Y')
