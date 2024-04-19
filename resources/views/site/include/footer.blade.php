@@ -18,7 +18,7 @@
 		                        @foreach($socialnetwork as $network)
 		                        <li class="ftco-animate"><a href="{{$network->link}}" target="_blank"><span
 		                                    class="icon-{{$network->icon}}">
-										</span></a>
+		                                </span></a>
 		                        </li>
 		                        @endforeach
 		                    </ul>
@@ -111,7 +111,7 @@ $(document).ready(function() {
 });
 		</script>
 
-		<script>
+		<!-- <script>
 function toggleDropdown() {
     var dropdown = document.getElementById("myDropdown");
     dropdown.classList.toggle("show");
@@ -141,30 +141,7 @@ document.getElementById('exit').addEventListener("click", function() {
         dropdown.classList.remove("show");
     }
 })
-
-// function toggleDropdown() {
-// 	var dropdown = document.getElementById("myDropdown");
-// 	dropdown.classList.toggle("show");
-// }
-// window.onclick = function(event) {
-// 	if (!event.target.matches('.profile-icon') && !event.target.matches('#exit')) {
-// 		var dropdown = getElementByClassName("dropdown-content");
-// 		var i;
-// 		for (i = 0; i < dropdowns.length; i++) {
-// 			var openDropdown = dropdowns[i];
-// 			if (openDropdown.classList.contains("show") && openDropdown !== dropdown) {
-// 				openDropdown.classList.remove("show");
-// 			}
-// 		}
-// 	}
-// }
-// document.getElementById("exit").addEventListener("click", function() {
-// 	var dropdown = getElementByClassName("dropdown-content");
-// 	if (dropdown.classList.contains('show')) {
-// 		dropdown.classList.remove("show");
-// 	}
-// })
-		</script>
+		</script> -->
 		</body>
 
 		</html>

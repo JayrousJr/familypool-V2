@@ -111,10 +111,11 @@ class UserResource extends Resource
                     ->imageCropAspectRatio('1:1')
                     ->imageResizeTargetWidth('500')
                     ->imageResizeTargetHeight('500')
-                    ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
-                        $fileName = $file->hashName();
-                        $name = explode('.', $fileName);
-                        return (string) str('profile-photos/' . $name[0] . '.png');
+                    ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file, callable $get): string {
+                        $name = $get('email');
+                        // $fileName = Str::random(9);
+                        // $name = explode('.', $fileName);
+                        return (string) str('profile-photos/profile_' . $name . '.webp');
                     })->label('Profile Image'),
             ]);
     }
@@ -187,8 +188,8 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            MessagesRelationManager::class,
-            RequestRelationManager::class,
+            // MessagesRelationManager::class,
+            // RequestRelationManager::class,
         ];
     }
 

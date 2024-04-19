@@ -10,116 +10,127 @@
 @endif
 <section class="ftco-section bg-light">
     <div class="container">
-        <div class="col-md-12 heading-section ftco-animate text-center ">
-            <h2 class="mb-4 text-info">Service Request Form</h2>
-            <p class="lead text-muted">Please Fill all the Form fields correctly</label>
-                <br>
-            <div class="col-md-12 text-left ftco-animate">
-                <section class="ftco-section-2">
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-
-                    <form action="{{'request'}}" name="services" method="POST" id="VserviceForm">
-                        @csrf
-                        <div class="col-md-12">
-
-                            <div class="form-group">
-                                <input type="text" id="name" name="name" placeholder="Full Names" spellcheck="false" class="form-control" readonly value="{{Auth::check() ? Auth::user()->name : ''}}">
-                                <input type="hidden" value="{{Auth::check() ? Auth::user()->id : ''}}" name="client_id">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="state" name="state" placeholder="Enter The State" spellcheck="false" class="form-control" readonly value="{{Auth::check() ? Auth::user()->state : ''}}">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="city" name="city" placeholder="Enter The city" spellcheck="false" class="form-control" readonly value="{{Auth::check() ? Auth::user()->city : ''}}">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="street" name="street" placeholder="Street / Physical Address" readonly value="{{Auth::check() ? Auth::user()->street : ''}}">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="email" placeholder="jayrous@example.com" id="email" name="email" class="form-control" readonly value="{{Auth::check() ? Auth::user()->email : ''}}">
-                            </div>
-                            <div class="form-group">
-                                <input type="tel" placeholder="(123) 456 789" name="phone" id="phone" class="form-control" readonly value="{{Auth::check() ? Auth::user()->phone : ''}}">
-                            </div>
-                            <div class="form-group">
-                                <div class="list-group">
-                                    <ul class="list-inline">
-                                        <p style="font-weight: 900">Select the Service(s) you require
-                                        </p>
-                                        <li>
-                                            <label class="col-form-label" for="service1">Pool
-                                                Maintenance </label>
-                                            <input type="checkbox" name="service[]" class="@error('service[]') is-invalid @enderror" id="service1" value="Pool Maintenance">
-                                        </li>
-                                        <li>
-                                            <label class="col-form-label" for="service2">Chemical
-                                                Balancing </label>
-                                            <input type="checkbox" name="service[]" class="@error('service[]') is-invalid @enderror" id="service2" value="Chemical Balancing">
-                                        </li>
-                                        <li>
-                                            <label class="col-form-label" for="service3">Pool Opening
-                                            </label>
-                                            <input type="checkbox" name="service[]" class="@error('service[]') is-invalid @enderror" id="service3" value="Pool Opening">
-                                        </li>
-                                        <li>
-                                            <label class="col-form-label" for="service4">Pool Equipment
-                                                Repairs </label>
-                                            <input type="checkbox" name="service[]" class="@error('service[]') is-invalid @enderror" id="service4" value="Pool Equipment Repairs">
-                                        </li>
-                                        <li>
-                                            <label class="col-form-label" for="service5">Pool Closing &
-                                                Winterizing
-                                            </label>
-                                            <input type="checkbox" name="service[]" class="@error('service[]') is-invalid @enderror" id="service5" value="Pool Closing & Winterizing">
-                                        </li>
-                                        <li>
-                                            <label class="col-form-label" for="service6">Pool Drain &
-                                                Pressure Washing
-                                            </label> <input type="checkbox" name="service[]" class="@error('service[]') is-invalid @enderror" id="service6" value="Pool Drain & Pressure Washing">
-                                        </li>
-                                        <li>
-                                            <label class="col-form-label" for="service7">Pool Cleaning
-                                            </label>
-                                            <input type="checkbox" name="service[]" class="@error('service[]') is-invalid @enderror" id="service7" value="Pool Cleaning">
-                                        </li>
-                                        <li>
-                                            <label class="col-form-label" for="service8">Pool Equipment
-                                                Repairs </label>
-                                            <input type="checkbox" name="service[]" class="@error('service[]') is-invalid @enderror" id="service8" value="Pool Equipment Repairs">
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control @error('description') is-invalid @enderror" placeholder="Describe the service with the clear description" rows="5" name="description" id="description" spellcheck="true" title="Enter Minimum of 100 characters">{{old('description')}}</textarea>
-                                @error('description')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{$message}}</strong>
-                                </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <div class="text-center">
-                                    <input type="submit" class="btn btn-blue px-5 py-2 " value="SEND SERVICE REQUEST" id="submit" name="submit">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </section>
-
-
+        <div class="row">
+            <div class="col-md-12 heading-section ftco-animate text-center">
+                <h2 class="mb-4 text-info">Service Request Form</h2>
+                <p class="lead text-muted">Please Fill all the Form fields correctly</label>
             </div>
         </div>
-    </div>
+
+        <form action="{{route('request')}}" name="services" method="POST" id="VserviceForm" class="" novalidate>
+            @csrf
+
+            <div class="row gx-3 gy-2 align-items-center mb-3">
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" name="name" id="inputFloating" placeholder="Jayrous King" class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}">
+                        <label for=" inputFloating">Full Name</label>
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="email" name="email" id="inputFloating" placeholder="name@email.com" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}">
+                        <label for="inputFloating">Email</label>
+                        @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <!-- Names and email -->
+            <div class="row gx-3 gy-2 align-items-center mb-3">
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="tel" name="phone" id="inputFloating" placeholder="00000000" class="form-control @error('phone') is-invalid @enderror" value="{{old('phone')}}">
+                        <label for="inputFloating">Telephone </label>
+                        @error('phone')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" name="zip" id="inputFloating" placeholder="Zip Code" class="form-control @error('zip') is-invalid @enderror" value="{{old('zip')}}">
+                        <label for="inputFloating">Zip Code </label>
+                        @error('zip')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <div class="form-head text-center">WHAT SERVICE DO YOU REQUIRE?</div>
+                </div>
+                <div class="col-md-12 check-controls">
+                    <div class="form-check check-modifier">
+                        <input type="radio" name="service" id="service1" class="form-check-input @error('service') is-invalid @enderror" value="REPAIR" value="{{old('service')}}">
+                        <label class="form-check-label" for="service1">REPAIR</label>
+                    </div>
+                    <div class="form-check check-modifier">
+                        <input type="radio" name="service" id="service2" class="form-check-input @error('service') is-invalid @enderror" value="CLEANING" value="{{old('service')}}">
+                        <label class="form-check-label" for="service2">CLEANING</label>
+                    </div>
+                    <div class="form-check check-modifier">
+                        <input type="radio" name="service" id="service3" class="form-check-input @error('service') is-invalid @enderror" value="EQUIPMENTS & CHEMICALS" value="{{old('service')}}">
+                        <label class="form-check-label" for="service3">EQUIPMENTS & CHEMICALS</label>
+                    </div>
+                    <div class="form-check check-modifier">
+                        <input type="radio" name="service" id="service4" class="form-check-input @error('service') is-invalid @enderror" value="COVERS" value="{{old('service')}}">
+                        <label class="form-check-label" for="service4">COVERS</label>
+                    </div>
+                    <div class="form-check check-modifier">
+                        <input type="radio" name="service" id="service5" class="form-check-input @error('service') is-invalid @enderror" value="OPENING & CLOSING" value="{{old('service')}}">
+                        <label class="form-check-label" for="service5">OPENING & CLOSING</label>
+                        @error('service')
+                        <div class="invalid-feedback invalid">
+                            <strong>Please Select a service</strong>
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3 mt-3">
+                <div class="col-md-12 mb-2">
+                    <div class="form-head text-center">PROVIDE SOME FEW DETAILS ABOUT SERVICE</div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-floating txtlabel">
+                        <textarea name="description" class="form-control  @error('description') is-invalid @enderror" id="inputFloating" style="height: 100px;" placeholder="Please Describe your service including when will it be best for you">{{old('description')}}</textarea>
+                        <label for="inputFloating">Describe your service</label>
+                        @error('description')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="text-center">
+                            <input type="submit" class="btn btn-blue px-5 py-2 " value="SEND SERVICE REQUEST" id="submit" name="submit">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
     </div>
 </section>
 

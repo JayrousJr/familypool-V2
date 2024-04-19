@@ -65,7 +65,7 @@ jQuery.extend( jQuery.easing,
 		if ((t/=d/2) < 1) return c/2*t*t*t + b;
 		return c/2*((t-=2)*t*t + 2) + b;
 	},
-	easeInQuart: function (x, t, b, c, d) {
+		easeInQuart: function (x, t, b, c, d) {
 		return c*(t/=d)*t*t*t + b;
 	},
 	easeOutQuart: function (x, t, b, c, d) {

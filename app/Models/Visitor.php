@@ -4,10 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Visitor extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    protected $table = 'shetabit_visits';
+    protected $fillable = [
+        'method', 'request', 'url', 'referer',
+        'languages', 'useragent', 'headers',
+        'device', 'platform', 'browser', 'ip',
+        'visitor_id', 'visitor_type',
+    ];
 }

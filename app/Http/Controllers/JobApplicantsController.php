@@ -8,6 +8,9 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\JobApplicationRequest;
+use App\Mail\JobReceived;
+use App\Mail\JobSent;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\ValidationException;
 
 class JobApplicantsController extends Controller
@@ -28,31 +31,32 @@ class JobApplicantsController extends Controller
                 'state' => ['required', 'string', 'max:255'],
                 'street' => ['required', 'string', 'max:255'],
                 'phone' => ['required', 'string', 'max:255'],
-                'zip' => ['required', 'string', 'min:3', 'max:6'],
+                'zip' => ['required', 'integer', 'min_digits:3', 'max_digits:6'],
                 'gender' => ['required', 'in:Male,Female'],
                 'age' => ['required', 'integer', 'between:18,45'],
                 'birthdate' => ['required', 'date', 'date_format:Y-m-d'],
                 'days' => 'required|array|min:2|max:6',
-                'days.*' => 'in:Monday,Tuesday,Wednesday,Thursday,Friday,Saturday',
+                // 'days.*' => 'in:Monday,Tuesday,Wednesday,Thursday,Friday,Saturday',
                 'starttime' => ['required', 'string'],
                 'endtime' => ['required', 'string'],
                 'startdate' => ['required', 'date', 'date_format:Y-m-d'],
                 'workperiod' => ['required', 'integer', 'between:3,12'],
                 'workHours' => ['required', 'integer', 'between:30,170'],
                 'smoke' => 'required',
+                'socialsecurity' => 'required',
                 'licence' => ['required'],
                 'licenceNumber' => ['string', 'max:255', 'min:6'],
-                'issueddate' => ['required_if:licence,I have valid license', 'date', 'date_format:Y-m-d'],
-                'expiredate' => ['required_if:licence,I have valid license', 'date', 'date_format:Y-m-d'],
+                'issueddate' => ['required_if:licence,YES I I HAVE DRIVING LICENCEe', 'date', 'date_format:Y-m-d'],
+                'expiredate' => ['required_if:licence,YES I I HAVE DRIVING LICENCEe', 'date', 'date_format:Y-m-d'],
                 'issuedcity' => ['string', 'max:255'],
-                'transport' => 'required|in:I Own transport,I do not own transport',
+
 
                 'socialsecurity' => ['required', Rule::in(['SSN', 'EIN'])],
                 'einNumber' => ['nullable', 'min:10', 'unique:job_applicants,einNumber', 'string', 'max:10'],
                 'socialsecurityNumber' => ['nullable', 'min:11', 'unique:job_applicants,socialsecurityNumber', 'string', 'max:11'],
             ];
             $errorMessage = [
-                'zip.required' => 'Please Fill in your zip Code.',
+                'zip.required' => 'Please Fill in your zip Code',
                 'gender.required' => 'Please fill in the Gender',
                 'socialsecurity' => 'Please select the Service you use either SSN or EIN',
                 'days.required' => 'You must choose atleast two days of working',
@@ -61,15 +65,15 @@ class JobApplicantsController extends Controller
                 'birthdate.required' => 'Please Fill in your Birth Date details',
                 'workperiod.between' => 'The workperiod field must be between 3 and 12 months',
                 'smoke.required' => 'Please Choose whether you smoke or you do not smoke',
-                'licence.required' => 'Please Cjoose whether you have a driveing licence or not',
+                'licence.required' => 'Please Choose whether you have a driveing licence or not',
                 'transport.required' => 'Please choose whether you have a transport or not',
                 'licenceNumber.required' => 'Please Fill in your licence',
-                'name.required' => 'Name Field is mandantory, please go to your Profile to set it',
-                'state.required' => 'State Field is mandantory, please go to your Profile to set it',
-                'street.required' => 'Street Field is mandantory, please go to your Profile to set it',
-                'city.required' => 'City Field is mandantory, please go to your Profile to set it',
-                'phone.required' => 'Phone Field is mandantory, please go to your Profile to set it',
-                'nationality.required' => 'Nationality Field is mandantory, please go to your Profile to set it',
+                'name.required' => 'Name Field is required, set this detail on your profile setting',
+                'state.required' => 'State Field is required, set this detail on your profile setting',
+                'street.required' => 'Street Field is required, set this detail on your profile setting',
+                'city.required' => 'City Field is required, set this detail on your profile setting',
+                'phone.required' => 'Phone Field is required, set this detail on your profile setting',
+                'nationality.required' => 'Nationality Field is required, set this detail on your profile setting',
                 // '' => 'Please Fill in your  Details',
             ];
 
@@ -110,8 +114,11 @@ class JobApplicantsController extends Controller
                 $application->expiredate = request()->expiredate;
                 $application->transport = request()->transport;
 
-
                 $application->save();
+                $mailto = 'info@thefamilypool.com';
+                $amani = "amanijoel85@gmail.com";
+                Mail::to($mailto)->cc($amani)->send(new JobSent($application));
+                Mail::to($application->email)->send(new JobReceived($application));
 
                 session()->flash('message', 'Your Job application has successiful being sent, we are working on your application and we will come back to you!');
                 return redirect('/');

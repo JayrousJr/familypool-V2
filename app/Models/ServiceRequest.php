@@ -10,6 +10,6 @@ class ServiceRequest extends Model
 {
     use HasFactory, SoftDeletes;
     protected $fillable = [
-        'name', 'street', 'city', 'state', 'description', 'service', 'phone', 'client_id', 'email'
+        'name', 'street', 'city', 'zip', 'description', 'service', 'phone',  'email'
     ];
 }

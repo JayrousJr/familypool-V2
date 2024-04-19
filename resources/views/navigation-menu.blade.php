@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                @if(Auth::user()->role === 'User')
+                {{-- @if(Auth::user()->role === 'User')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('messages.index') }}" :active="request()->routeIs('messages.index')">
                         {{ __('My Messages') }}
@@ -27,7 +27,7 @@
                         {{ __('My Services') }}
                     </x-nav-link>
                 </div>
-                @endif
+                @endif --}}
                 @if(Auth::user()->role === 'Manager')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('reply.index') }}" :active="request()->routeIs('reply.index')">

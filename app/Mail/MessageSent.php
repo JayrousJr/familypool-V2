@@ -38,6 +38,7 @@ class MessageSent extends Mailable
     public function content(): Content
     {
         return new Content(
+            html: 'mail.message',
             markdown: 'mail.message',
             with: [
                 'Emessage' => $this->formData->message,

@@ -138,3 +138,67 @@ a{
 .show{
 	display: block;
 }
+
+.item-select{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.txtlabel > label{
+	padding-left: 1.5em;
+}
+.check-controls{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-top: 1em;
+}
+.check-modifier{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background-color: rgb(236, 237, 237);
+	margin: .3em ;
+	padding: .5em 2em;
+	cursor: pointer;
+	color: #000;
+}
+.form-check-label{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: .8em;
+}
+.form-check .form-check-input{
+	display: block;
+	position: relative;
+}
+.form-control{
+	border-radius: 0.1em;
+	box-shadow: none;
+
+}
+.form-control:hover, .form-control:focus{
+	box-shadow: none;
+	border: 2px solid #000;
+}
+.invalid{
+	position: absolute;
+	bottom: -2em;
+	font-size: 1em;
+}
+.is-invalid:focus{
+	box-shadow: none;
+}
+.logo-img{
+	background: transparent;
+}
+.container > img{
+	background: transparent;
+}
+.navbar-toggler:focus{
+	outline: none;
+	box-shadow: none;
+}

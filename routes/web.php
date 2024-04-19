@@ -17,6 +17,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\JobApplicantsController;
 use App\Http\Controllers\ServiceRequestController;
+use App\Models\Visitor;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,18 +40,19 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::middleware([
-    'visitor',
-])->group(function () {
 
-    Route::get('/', function (Request $request) {
-
-        $data['abouts'] = About::all();
-        $data['popups'] = PopUp::all();
-        $data['socialnetwork'] = SocialNetwork::all();
-        $data['infos'] = CompanyInfo::all();
-        return view('/site/index', $data);
-    });
+Route::get('/', function (Request $request) {
+    // configuring the ip
+    $visitorIP = $request->ip();
+    $visitor = Visitor::firstorCreate(['ip' => $visitorIP]);
+    $visitor->increment('request');
+    $visitor->save();
+    // configuring the ip
+    $data['abouts'] = About::all();
+    $data['popups'] = PopUp::all();
+    $data['socialnetwork'] = SocialNetwork::all();
+    $data['infos'] = CompanyInfo::all();
+    return view('/site/index', $data);
 });
 
 
@@ -65,19 +67,16 @@ Route::middleware([
     Route::post('/apply_job', [JobApplicantsController::class, 'apply_job'])->name('apply_job');
 });
 
-Route::middleware([
-    'auth:sanctum', config('jetstream.auth_session'), 'verified', 'check.service.application'
-])->group(function () {
-    Route::post('request', [ServiceRequestController::class, 'request']);
-});
+
 
 Route::get('service', [PagesController::class, 'service']);
 Route::get('gallery', [PagesController::class, 'gallery']);
 Route::get('about', [PagesController::class, 'about']);
 Route::get('category', [PagesController::class, 'categories']);
 Route::get('contact', [PagesController::class, 'contact']);
-Route::get('service-request', [PagesController::class, 'askservice']);
+Route::get('service-request', [PagesController::class, 'askservice'])->name('askservice');
 Route::get('pdf/{record}', PdfController::class)->name('pdf');
+Route::post('request', [ServiceRequestController::class, 'request'])->name('request');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     // 

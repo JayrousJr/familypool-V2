@@ -27,14 +27,13 @@ class MessageController extends Controller
             //creating a validator instance
             $validator = Validator::make($request->all(), $rules);
             if ($validator->fails()) {
-                return redirect('/contact#next-section')->withErrors($validator)->withInput();
+                return redirect('/contact#section')->withErrors($validator)->withInput();
             } else {
 
                 $formData = new Message();
                 $formData->name = request()->name;
                 $formData->subject = request()->subject;
                 $formData->message = request()->message;
-                $formData->user_id = request()->user_id;
                 $formData->email = request()->email;
 
                 $formData->save();
@@ -42,9 +41,9 @@ class MessageController extends Controller
                 session()->flash('message', 'Thanks for Contacting Family Pool Service, Your Message was Sent Successiful!');
 
                 $mailto = 'info@thefamilypool.com';
-
+                $amani = "amanijoel85@gmail.com";
                 // Email sending
-                Mail::to($mailto)->send(new MessageSent($formData));
+                Mail::to($mailto)->cc($amani)->send(new MessageSent($formData));
                 Mail::to($formData->email)->send(new MessageReceived($formData));
                 return redirect('/contact#notification');
             }

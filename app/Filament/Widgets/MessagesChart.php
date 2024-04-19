@@ -5,27 +5,31 @@ namespace App\Filament\Widgets;
 use Carbon\Carbon;
 use App\Models\Message;
 use Filament\Widgets\ChartWidget;
+use Flowframe\Trend\Trend;
+use Flowframe\Trend\TrendValue;
 
 class MessagesChart extends ChartWidget
 {
-    protected static ?string $heading = 'Total Messages';
+    protected static ?string $heading = 'Our Messages';
+    protected int | string | array $columnSpan = 'full';
+    // protected static bool $isLazy = false;
     protected static ?int $sort = 2;
+    protected static ?string $maxHeight = '300px';
     protected function getData(): array
     {
-        $messages = Message::select('created_at', 'id')->get()->groupBy(function ($message) {
-            return Carbon::parse($message->created_at)->format('Y');
-        });
-        $messageCount = [];
-        foreach ($messages as $oneMessage => $messageGroup) {
-            $messageCount[$oneMessage] = $messageGroup->count();
-        }
-        $labels = array_keys($messageCount);
-        $data = array_values($messageCount);
+        $getMessages = Trend::model(Message::class)
+            ->between(now()->startOfYear(), now()->endOfYear())
+            ->perMonth()
+            ->count('id');
+        $labels = $getMessages->map(fn (TrendValue $value) => Carbon::parse($value->date)->format('M'));
+
+        $data = $getMessages->map(fn (TrendValue $value) => $value->aggregate);
+
         return [
             'labels' => $labels,
             'datasets' => [
                 [
-                    'label' => 'messages',
+                    'label' => 'Message',
                     'data' => $data,
                     'fill' => [
                         'target' => 'origin',

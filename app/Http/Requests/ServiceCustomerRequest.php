@@ -24,29 +24,29 @@ class ServiceCustomerRequest extends FormRequest
         return [
             'client_id' => 'required',
             'name' => 'required',
-            'state' => 'required',
+            'zip' => 'required',
             'city' => 'required',
             'street' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'service' => 'required|array|min:1', // Ensure at least one checkbox is selected
+            'service' => 'required', // Ensure at least one checkbox is selected
             'service.*' => 'in:Pool Maintenance,Chemical Balancing,Pool Opening,Pool Equipment Repairs,Pool Closing & Winterizing,Pool Drain & Pressure Washing,Pool Cleaning',
-            'description' => 'required|string|min:50',
+            'description' => 'required|string|min:10',
         ];
     }
 
     public function messages()
     {
         return [
-            'description.required' => 'Please describe the service you require from us clearly atleast 100 characters ',
+            'description.required' => 'Please describe the service you require from us clearly atleast 10 characters ',
             'service.required' => 'Please select the Cleck boxes below for atleast one service you require.',
             'email.email' => 'Please enter a valid email address. Go to your Profile to set The',
-            'name.required' => 'Name Field is mandantory, please go to your Profile to set it',
-            'state.required' => 'State Field is mandantory, please go to your Profile to set it',
-            'street.required' => 'Street Field is mandantory, please go to your Profile to set it',
-            'city.required' => 'City Field is mandantory, please go to your Profile to set it',
-            'phone.required' => 'Phone Field is mandantory, please go to your Profile to set it',
-            'nationality.required' => 'Nationality Field is mandantory, please go to your Profile to set it',
+            'name.required' => 'Name Field is mandantory',
+            'zip.required' => 'Zip Field is mandantory',
+            'street.required' => 'Street Field is mandantory',
+            'city.required' => 'City Field is mandantory',
+            'phone.required' => 'Phone Field is mandantory',
+            'nationality.required' => 'Nationality Field is mandantory',
             // Add more custom messages as needed
         ];
     }

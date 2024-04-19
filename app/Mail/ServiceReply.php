@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Message;
+use App\Models\ServiceRequest;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,14 +10,14 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class MessageReceived extends Mailable
+class ServiceReply extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(protected Message $formData)
+    public function __construct(protected ServiceRequest $serviceRequest)
 
     {
         //
@@ -29,7 +29,7 @@ class MessageReceived extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Message Received',
+            subject: 'Service Reply',
         );
     }
 
@@ -39,14 +39,15 @@ class MessageReceived extends Mailable
     public function content(): Content
     {
         return new Content(
-            html: 'mail.reply',
-            markdown: 'mail.reply',
+            markdown: 'mail.service.reply',
             with: [
-                'Emessage' => $this->formData->message,
-                'name' => $this->formData->name,
-                'email' => $this->formData->email,
-                'subject' => $this->formData->subject,
-            ],
+                'name' => $this->serviceRequest->name,
+                'email' => $this->serviceRequest->email,
+                'phone' => $this->serviceRequest->phone,
+                'service' => $this->serviceRequest->service,
+                'zip' => $this->serviceRequest->zip,
+                'description' => $this->serviceRequest->description,
+            ]
         );
     }
 

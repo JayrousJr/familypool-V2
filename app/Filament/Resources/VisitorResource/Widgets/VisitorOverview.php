@@ -12,20 +12,20 @@ class VisitorOverview extends BaseWidget
 {
     protected function getStats(): array
     {
-        $totalVisitors = DB::table('shetabit_visits')->count();
+        $totalVisitors = DB::table('visitors')->count();
 
         $currentWeekStart = Carbon::now()->startOfWeek();
-        $weeklyVisitors = DB::table('shetabit_visits')
+        $weeklyVisitors = DB::table('visitors')
             ->where('created_at', '>=', $currentWeekStart)
             ->count();
 
         $currentMonthStart = Carbon::now()->startOfMonth();
-        $monthlyVisitors = DB::table('shetabit_visits')
+        $monthlyVisitors = DB::table('visitors')
             ->where('created_at', '>=', $currentMonthStart)
             ->count();
 
         $currentDay = Carbon::now()->startOfDay();
-        $dailyVisitors = DB::table('shetabit_visits')
+        $dailyVisitors = DB::table('visitors')
             ->where('created_at', '>=', $currentDay)
             ->count();
         return [

@@ -6,49 +6,59 @@ namespace App\Http\Controllers;
 use App\Models\ServiceRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\ServiceCustomerRequest;
 use App\Mail\ServiceFeedback;
+use App\Mail\ServiceReply;
 use App\Mail\ServiceRequeseCustomer;
+use App\Mail\ServiceSent;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
 class ServiceRequestController extends Controller
 {
-    function request(ServiceCustomerRequest  $request)
+    function request(Request  $request): RedirectResponse
     {
 
-        if (Auth::user()->role === 'User') {
-            try {
-                $validateData = $request->validated();
 
-                $serviceRequest = new ServiceRequest([
-                    'client_id' => $validateData['client_id'],
-                    'name' => $validateData['name'],
-                    'email' => $validateData['email'],
-                    'phone' => $validateData['phone'],
-                    'service' => json_encode($validateData['service']),
-                    'street' => $validateData['street'],
-                    'city' => $validateData['city'],
-                    'state' => $validateData['state'],
-                    'description' => $validateData['description'],
-                ]);
+        $rule = [
+            'name' => 'required|string|min:5|max:50',
+            'zip' => 'required',
+            'email' => 'required|email|min:5|max:50',
+            'phone' => 'required|string|min:5|max:50',
+            'service' => 'required', // Ensure at least one checkbox is selected
+            'description' => 'required|string|min:10',
+        ];
+        $validator = Validator::make($request->all(), $rule);
+        if ($validator->fails()) {
+            return redirect()->route('askservice')->withErrors($validator)->withInput();
+        }
+        try {
+            DB::beginTransaction();
+            $validated = $validator->validated();
+            $serviceRequest = new ServiceRequest();
 
-                $serviceRequest->save();
+            $serviceRequest->name = $request->input('name');
+            $serviceRequest->email = $request->input('email');
+            $serviceRequest->phone = $request->input('phone');
+            $serviceRequest->service = $request->input('service');
+            $serviceRequest->zip = $request->input('zip');
+            $serviceRequest->description = ($request->input('description'));
 
-                $mailto = 'admin@familypoolserviceonline.com';
-                // Email sending
-                Mail::to($mailto)->send(new ServiceFeedback($serviceRequest));
-                Mail::to($serviceRequest->email)->send(new ServiceRequeseCustomer($serviceRequest));
+            $serviceRequest->save();
+            $mailto = 'info@thefamilypool.com';
+            $amani = "amanijoel85@gmail.com";
+            Mail::to($mailto)->cc($amani)->send(new ServiceSent($serviceRequest));
+            Mail::to($serviceRequest->email)->cc($amani)->send(new ServiceReply($serviceRequest));
 
-                session()->flash('message', 'You have Successiful applied for the service');
-                return redirect('/');
-            } catch (ValidationException $e) {
-                // If validation fails, redirect back to the previous page with errors and the fragment identifier
-                return redirect()->route('/service-request')->withErrors($e->validator)->withInput();
-            }
-        } else {
-            session()->flash('error', 'You can not ask for service as you are in the administrative team');
-            return redirect('/service-request');
+            DB::commit();
+
+            session()->flash('message', 'You have Successiful applied for the service');
+            return redirect('/');
+        } catch (ValidationException $e) {
+            return redirect()->route('/service-request')->withErrors($e->validator)->withInput();
         }
     }
 }

@@ -2,55 +2,37 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use App\Models\Visitor;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
-use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\VisitorResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\VisitorResource\RelationManagers;
-use App\Filament\Resources\VisitorResource\Widgets\VisitorWidget;
+use App\Models\Visitor;
+use Filament\Forms;
+use Filament\Forms\Form;
+use Filament\Resources\Resource;
+use Filament\Tables;
+use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class VisitorResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-eye';
-    protected static ?string $navigationGroup = 'Company';
     protected static ?string $model = Visitor::class;
-
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
     }
-    protected static ?int $navigationSort = 1;
+    protected static ?string $navigationIcon = 'heroicon-o-eye';
+    protected static ?string $navigationGroup = 'System Management';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('id'),
-                Forms\Components\TextInput::make('method'),
-                Forms\Components\TextInput::make('request'),
-                Forms\Components\TextInput::make('url'),
-                Forms\Components\TextInput::make('referer'),
-                Forms\Components\RichEditor::make('languages'),
-                // Forms\Components\RichEditor::make('headers'),
-                Forms\Components\RichEditor::make('useragent'),
-                Forms\Components\TextInput::make('device'),
-                Forms\Components\TextInput::make('platform'),
-                Forms\Components\TextInput::make('browser'),
-                Forms\Components\TextInput::make('ip')
-                    ->label('IP address'),
-                Forms\Components\TextInput::make('visitable_type'),
-                Forms\Components\TextInput::make('visitable_id'),
-                // Forms\Components\TextInput::make('visitor_type'),
-                Forms\Components\TextInput::make('visitor_id'),
-                Forms\Components\TextInput::make('created_at')
-                    ->label('Visited At'),
-                // Forms\Components\TextInput::make('updated_at'),
-                // Forms\Components\TextInput::make(''),
+                Forms\Components\TextInput::make('ipAddress')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('visits')
+                    ->required()
+                    ->numeric()
+                    ->default(0),
             ]);
     }
 
@@ -58,28 +40,31 @@ class VisitorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id')
-                    ->sortable()
-                    ->label('No'),
-                Tables\Columns\TextColumn::make('device')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('ip')
-                    ->label('IP address')
+                    ->copyable()
+                    ->copyMessage('IP address copied')
+                    ->copyMessageDuration(1000)
+                    ->icon('heroicon-m-globe-alt')
+                    // ->iconColor('primary')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('platform')
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('browser')
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('request')
+                    ->badge()
+                    ->color('primary')
+                    // ->iconColor('green')
+                    ->icon('heroicon-s-x-mark'),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Visited Date')
-                    ->dateTime('D M d, Y')
+                    ->label('Visited')
+                    ->dateTime()
+                    ->since()
                     ->sortable(),
-
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
-                //
+                Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -88,10 +73,9 @@ class VisitorResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\ForceDeleteBulkAction::make(),
+                    Tables\Actions\RestoreBulkAction::make(),
                 ]),
-            ])
-            ->emptyStateActions([
-                Tables\Actions\CreateAction::make(),
             ]);
     }
 
@@ -110,5 +94,13 @@ class VisitorResource extends Resource
             'view' => Pages\ViewVisitor::route('/{record}'),
             'edit' => Pages\EditVisitor::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ]);
     }
 }

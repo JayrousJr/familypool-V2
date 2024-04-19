@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Message;
+use App\Models\JobApplicants;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,15 +10,14 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class MessageReceived extends Mailable
+class JobReceived extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(protected Message $formData)
-
+    public function __construct(protected JobApplicants $application)
     {
         //
     }
@@ -29,7 +28,7 @@ class MessageReceived extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Message Received',
+            subject: 'Your Job Request is Received',
         );
     }
 
@@ -39,13 +38,13 @@ class MessageReceived extends Mailable
     public function content(): Content
     {
         return new Content(
-            html: 'mail.reply',
-            markdown: 'mail.reply',
+            markdown: 'mail.job.received',
             with: [
-                'Emessage' => $this->formData->message,
-                'name' => $this->formData->name,
-                'email' => $this->formData->email,
-                'subject' => $this->formData->subject,
+                'name' => $this->application->name,
+                'email' => $this->application->email,
+                'state' => $this->application->state,
+                'zip' => $this->application->zip,
+                'city' => $this->application->city,
             ],
         );
     }
