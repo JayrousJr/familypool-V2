@@ -17,38 +17,34 @@ class MessageController extends Controller
     function message(Request $request)
     {
 
-        if (Auth::check()) {
-            $rules = [
-                'name' => ['required', 'string', 'max:30'],
-                'subject' => ['required', 'string', 'max:255', 'min:2'],
-                'email' => ['required', 'string', 'max:255', 'email'],
-                'message' => ['required', 'string', 'max:1000', 'min:3'],
-            ];
-            //creating a validator instance
-            $validator = Validator::make($request->all(), $rules);
-            if ($validator->fails()) {
-                return redirect('/contact#section')->withErrors($validator)->withInput();
-            } else {
-
-                $formData = new Message();
-                $formData->name = request()->name;
-                $formData->subject = request()->subject;
-                $formData->message = request()->message;
-                $formData->email = request()->email;
-
-                $formData->save();
-
-                session()->flash('message', 'Thanks for Contacting Family Pool Service, Your Message was Sent Successiful!');
-
-                $mailto = 'info@thefamilypool.com';
-                $amani = "amanijoel85@gmail.com";
-                // Email sending
-                Mail::to($mailto)->cc($amani)->send(new MessageSent($formData));
-                Mail::to($formData->email)->send(new MessageReceived($formData));
-                return redirect('/contact#notification');
-            }
+        $rules = [
+            'name' => ['required', 'string', 'max:30'],
+            'subject' => ['required', 'string', 'max:255', 'min:2'],
+            'email' => ['required', 'string', 'max:255', 'email'],
+            'message' => ['required', 'string', 'max:1000', 'min:3'],
+        ];
+        //creating a validator instance
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return redirect('/contact#section')->withErrors($validator)->withInput();
         } else {
-            return redirect()->route('register');
+
+            $formData = new Message();
+            $formData->name = request()->name;
+            $formData->subject = request()->subject;
+            $formData->message = request()->message;
+            $formData->email = request()->email;
+
+            $formData->save();
+            dd($formData);
+            session()->flash('message', 'Thanks for Contacting Family Pool Service, Your Message was Sent Successiful!');
+
+            $mailto = 'info@thefamilypool.com';
+            $amani = "amanijoel85@gmail.com";
+            // Email sending
+            Mail::to($mailto)->cc($amani)->send(new MessageSent($formData));
+            Mail::to($formData->email)->send(new MessageReceived($formData));
+            return redirect('/contact#notification');
         }
     }
 }
