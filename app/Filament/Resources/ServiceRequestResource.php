@@ -15,6 +15,10 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ServiceRequestResource\Pages;
 use App\Filament\Resources\ServiceRequestResource\RelationManagers;
+use App\Models\Client;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
 
 class ServiceRequestResource extends Resource
 {
@@ -30,26 +34,31 @@ class ServiceRequestResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Select::make('name')
                     ->label('Client Name')
+                    ->options(Client::where('active', 1)->pluck('name', 'name'))
+                    ->preload()
+                    ->searchable()
+                    ->live()
+                    ->afterStateUpdated(function ($state, callable $set) {
+                        if (empty($state))
+                            return $state;
+                        $user = Client::where("name", $state)->first();
+                        $set("email", $user->name);
+                        $set("zip", $user->zip);
+                        $set("phone", $user->phone);
+                    })
                     ->required(),
-                Forms\Components\TextInput::make('client_id')
-                    ->label('Client Number')
-                    ->required(),
-                Forms\Components\TextInput::make('city')
+                TextInput::make('email')
+                    ->label('Client Email'),
+                // ->readOnly(),
+                TextInput::make('zip')
                     ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('state')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('street')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('phone')
-                    ->tel()
-                    ->required()
-                    ->maxLength(255),
-                RichEditor::make('service'),
+                    ->label("Zip Code"),
+                // ->readOnly(),
+                TextInput::make('phone'),
+                // ->readOnly(),
+                RichEditor::make('service')->maxLength(250),
                 RichEditor::make('description')
                     ->required()
                     ->maxLength(1500),
@@ -60,24 +69,24 @@ class ServiceRequestResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('service')
+                TextColumn::make('service')
+                    ->html()
                     ->searchable(),
-                Tables\Columns\TextColumn::make('zip')
+                TextColumn::make('zip')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('phone')
+                TextColumn::make('phone')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('deleted_at')
+                TextColumn::make('deleted_at')
                     ->dateTime('D M d, Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime('D M d, Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime('D M d, Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -86,14 +95,21 @@ class ServiceRequestResource extends Resource
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
+                Tables\Actions\Action::make('pdfGen')
+                    ->label('Print')
+                    ->icon('heroicon-o-printer')
+                    ->url(fn (ServiceRequest $record) => route('pdfGen', $record)),
+
                 ActionGroup::make([
                     Tables\Actions\ViewAction::make(),
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make(),
+
                 ])
-                    ->size(ActionSize::Small)
+                    ->size(ActionSize::Medium)
                     ->icon('heroicon-m-ellipsis-horizontal')
                     ->tooltip('Actions')
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

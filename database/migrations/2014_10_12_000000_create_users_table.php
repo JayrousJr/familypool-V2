@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->index();
             $table->string('email')->unique();
-            $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('profile_photo_path', 2048)->default("profile-photos/profile.jpg")->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('nationality')->index()->nullable();
             $table->string('city')->index()->nullable();

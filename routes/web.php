@@ -16,6 +16,7 @@ use App\Filament\Resources\ClientResource;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\JobApplicantsController;
+use App\Http\Controllers\PdfServiceGen;
 use App\Http\Controllers\ServiceRequestController;
 use App\Models\Visitor;
 
@@ -75,6 +76,7 @@ Route::get('category', [PagesController::class, 'categories']);
 Route::get('contact', [PagesController::class, 'contact']);
 Route::get('service-request', [PagesController::class, 'askservice'])->name('askservice');
 Route::get('pdf/{record}', PdfController::class)->name('pdf');
+Route::get('pdf/e/{record}', PdfServiceGen::class)->name('pdfGen');
 Route::post('request', [ServiceRequestController::class, 'request'])->name('request');
 Route::post('send', [MessageController::class, 'message']);
 

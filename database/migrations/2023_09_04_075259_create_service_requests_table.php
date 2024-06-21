@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('service_requests', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('client_id')->index();
+            // $table->foreignId('client_id')->constrained('clients')->nullOnDelete();
             $table->string('name')->index();
             $table->string('email')->index();
             $table->string('zip')->index();

@@ -13,10 +13,10 @@ class RolePolicy
      */
     public function viewAny(User $user)
     {
-        if ($user->hasPermissionTo('IT Permission')) {
-            return true;
-        }
-        return false;
+        // if ($user->hasPermissionTo('IT Permission')) {
+        return true;
+        // }
+        // return false;
     }
 
     /**
@@ -24,10 +24,10 @@ class RolePolicy
      */
     public function view(User $user, Role $role)
     {
-        if ($user->hasPermissionTo('IT Permission')) {
-            return true;
-        }
-        return false;
+        // if ($user->hasPermissionTo('IT Permission')) {
+        return true;
+        // }
+        // return false;
     }
 
     /**
@@ -46,10 +46,10 @@ class RolePolicy
      */
     public function update(User $user, Role $role)
     {
-        if ($user->hasPermissionTo('IT Permission')) {
-            return true;
-        }
-        return false;
+        // if ($user->hasPermissionTo('IT Permission')) {
+        return true;
+        // }
+        // return false;
     }
 
     /**

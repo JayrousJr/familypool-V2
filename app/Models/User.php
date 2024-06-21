@@ -77,6 +77,10 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasMany(Message::class, 'user_id', 'id');
     }
+    public function clients()
+    {
+        return $this->hasMany(Client::class, 'user_id', 'id');
+    }
     public function requests()
     {
         return $this->hasMany(ServiceRequest::class, 'client_id', 'id');
@@ -84,17 +88,18 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
+        return true;
         return $this->hasRole(['Manager', 'Technician', 'Company IT']);
     }
 
     public function isIT(): bool
     {
-        return $this->role === 'Company IT';
+        return $this->hasRole(['Company IT']);
     }
 
     public function isManager(): bool
     {
-        return $this->role === 'Manager';
+        return $this->hasRole(['Manager', 'Company IT']);
     }
     // public function view()
     // {

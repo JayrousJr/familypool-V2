@@ -12,4 +12,9 @@ class ClientCategory extends Model
     protected $fillable = [
         'category',
     ];
+
+    public function categories()
+    {
+        return $this->hasMany(Client::class, "client_category_id", "id");
+    }
 }

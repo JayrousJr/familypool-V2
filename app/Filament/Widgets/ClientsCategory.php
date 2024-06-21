@@ -9,11 +9,12 @@ class ClientsCategory extends ChartWidget
 {
     protected static ?string $heading = 'Clients Categories';
     protected static ?int $sort = 3;
-
+    protected static bool $isLazy = false;
     protected function getData(): array
     {
-        $clients = Client::select('category', 'id')->get()->groupBy(function ($client) {
-            return $client->category;
+        $clients = Client::select('client_category_id')->get()->groupBy(function ($client) {
+            return $client->category->category;
+            // That called the relationship defined called "category" and just chained it with the row name called category
         });
         $clientCount = [];
         foreach ($clients as $oneClient => $clientGroup) {
@@ -25,7 +26,7 @@ class ClientsCategory extends ChartWidget
             'labels' => $labels,
             'datasets' => [
                 [
-                    'label' => 'category',
+                    'label' => 'Category',
                     'data' => $data,
                     'backgroundColor' =>  [
                         'rgb(54, 162, 235)',

@@ -22,6 +22,7 @@ use App\Filament\Resources\UserResource\RelationManagers;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use App\Filament\Resources\UserResource\RelationManagers\RequestRelationManager;
 use App\Filament\Resources\UserResource\RelationManagers\MessagesRelationManager;
+use Filament\Forms\Components\TextInput;
 
 class UserResource extends Resource
 {
@@ -39,11 +40,9 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->readOnly()
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')
-                    ->readOnly()
                     ->email()
                     ->required()
                     ->maxLength(255),
@@ -54,50 +53,34 @@ class UserResource extends Resource
                     ->dehydrated(fn (?string $state): bool => filled($state))
                     ->maxLength(255),
                 Forms\Components\TextInput::make('nationality')
-                    ->readOnly()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('city')
-                    ->readOnly()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('state')
-                    ->readOnly()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('street')
-                    ->readOnly()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('phone')
-                    ->readOnly()
                     ->tel()
                     ->maxLength(255),
 
-
-                // Forms\Components\Textarea::make('two_factor_secret')
-                //     ->maxLength(65535)
-                //     ->columnSpanFull(),
-                // Forms\Components\Textarea::make('two_factor_recovery_codes')
-                //     ->maxLength(65535)
-                //     ->columnSpanFull(),
-                // Forms\Components\DateTimePicker::make('two_factor_confirmed_at'),
-                // Forms\Components\TextInput::make('current_team_id')
-                //     ->numeric(),
-
-
                 Select::make('roles')
                     ->required()
-                    ->multiple()
                     ->relationship('roles', 'name')
                     ->preload()
-                    ->reactive(),
-                // Select::make('permissions')
-                //     // ->required()
-                //     ->multiple()
-                //     ->relationship('permissions', 'name')
-                //     ->preload(),
-                Select::make('role')
+                    ->live()
                     ->searchable()
+                    ->reactive()
+                    ->afterStateUpdated(function ($state, callable $set) {
+                        if (blank($state))
+                            return;
+                        $role = Role::find($state);
+                        $set('role', $role->name);
+                    }),
+                TextInput::make('role')
+                    ->readOnly()
                     ->required()
                     ->helperText('This is the Role of a person in the system')
-                    ->options(Role::all()->pluck('name', 'name'))
                     ->label('Role In the System'),
                 Forms\Components\Toggle::make('team_member')
                     ->afterStateUpdated(function (Set $set, ?string $state) {

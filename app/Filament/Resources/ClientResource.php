@@ -52,67 +52,31 @@ class ClientResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
-                    ->label('Client Name')
-                    ->required()
-                    ->live()
-                    ->searchable()
-                    ->preload()
-                    ->options(function () {
-                        // Retrieve a list of users who are not in the clients table
-                        return DB::table('users')
-                            ->leftJoin('clients', 'users.id', '=', 'clients.user_id')
-                            ->whereNull('clients.user_id')
-                            ->select('users.id', 'users.name')
-                            ->where('team_member', 0)
-                            ->get()
-                            ->pluck('name', 'id');
-                    })
-                    ->afterStateUpdated(function (Set $set, ?string $state) {
-                        if (blank($state)) return;
-                        $data = User::find($state);
-                        // $set(Auth::user()->team_member, '1');
-                        $set('email', $data->email);
-                        $set('name', $data->name);
-                        $set('id', $data->id);
-                        $set('nationality', $data->nationality);
-                        $set('city', $data->city);
-                        $set('state', $data->state);
-                        $set('street', $data->street);
-                        $set('phone', $data->phone);
-                        $set('active', '1');
-                        $set('user_id', $data->id);
-                    }),
                 Forms\Components\TextInput::make('name')
                     ->required(),
-                Forms\Components\Hidden::make('active')
-                    ->required(),
-                Forms\Components\Select::make('category')
-                    ->options(ClientCategory::all()->pluck('category', 'category'))
+                Forms\Components\Select::make('client_category_id')
+                    ->options(ClientCategory::all()->pluck('category', 'id'))
                     ->preload()
                     ->required()
                     ->searchable(),
                 Forms\Components\TextInput::make('email')
                     ->email()
-                    ->readonly()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('nationality')
-                    ->readonly()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('city')
-                    ->readonly()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('state')
-                    ->readonly()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('street')
-                    ->readonly()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('phone')
-                    ->readonly()
-                    ->tel()
+                    ->label("Telephone Number")
+                    ->tel(),
+                Forms\Components\TextInput::make('zip')
+                    ->label("Zip Code"),
+                Forms\Components\TextInput::make('nationality')
                     ->maxLength(255),
-
+                Forms\Components\TextInput::make('city')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('state')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('street')
+                    ->maxLength(255),
+                Forms\Components\Toggle::make('active')
+                    ->required(),
             ]);
     }
 
@@ -122,7 +86,7 @@ class ClientResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('category')
+                Tables\Columns\TextColumn::make('category.category')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->toggleable(isToggledHiddenByDefault: true)
@@ -153,11 +117,18 @@ class ClientResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
-                SelectFilter::make('category')
+                SelectFilter::make('client_category_id')
                     ->searchable()
-                    ->options(ClientCategory::all()->pluck('category', 'category'))
+                    // ->options(ClientCategory::all()->pluck('category', 'category'))
+                    ->options([
+                        '1' => "Un Categorized",
+                        '2' => "Bi-weekly service",
+                        '3' => "Weekly service",
+                        '4' => "Monthly service",
+                    ])
             ])
 
             ->actions([
@@ -208,7 +179,7 @@ class ClientResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RequestsRelationManager::class, MessagesRelationManager::class,
+            // RequestsRelationManager::class, MessagesRelationManager::class,
         ];
     }
 

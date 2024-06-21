@@ -12,7 +12,7 @@ class MessagesChart extends ChartWidget
 {
     protected static ?string $heading = 'Our Messages';
     protected int | string | array $columnSpan = 'full';
-    // protected static bool $isLazy = false;
+    protected static bool $isLazy = false;
     protected static ?int $sort = 2;
     protected static ?string $maxHeight = '300px';
     protected function getData(): array

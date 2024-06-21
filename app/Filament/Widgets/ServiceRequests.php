@@ -10,7 +10,7 @@ class ServiceRequests extends ChartWidget
 {
     protected static ?string $heading = 'Servces Requested';
     protected static ?int $sort = 4;
-
+    protected static bool $isLazy = false;
     protected function getData(): array
     {
         $requests = ServiceRequest::select('created_at', 'id')->get()->groupBy(function ($request) {
