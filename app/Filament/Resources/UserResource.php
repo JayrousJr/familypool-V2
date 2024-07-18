@@ -85,6 +85,7 @@ class UserResource extends Resource
                     ->helperText('This is the Role of a person in the system')
                     ->label('Role In the System'),
                 Forms\Components\Toggle::make('team_member')
+                    ->hidden(!auth()->user()->isManager())
                     ->afterStateUpdated(function (Set $set, ?string $state) {
                         if (blank($state)) return;
                         $set('role', 'Technician');
