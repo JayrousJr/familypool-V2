@@ -13,10 +13,7 @@ class AssignedTasksPolicy
      */
     public function viewAny(User $user): bool
     {
-        if ($user->isManager() || $user->isTechnician()) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     /**
@@ -24,10 +21,7 @@ class AssignedTasksPolicy
      */
     public function view(User $user, AssignedTasks $assignedTasks): bool
     {
-        if ($user->isManager() || $user->isTechnician()) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     /**
@@ -35,10 +29,7 @@ class AssignedTasksPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->isManager() || $user->isTechnician()) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
     /**
