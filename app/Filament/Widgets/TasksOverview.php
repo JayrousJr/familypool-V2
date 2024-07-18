@@ -66,7 +66,7 @@ class TasksOverview extends BaseWidget
         return [
             Stat::make("Today's tasks", todaysTasks()),
             Stat::make("Today's Completed Tasks", completedTask()),
-            Stat::make("Todays All Tasks", todaysAllTasks()),
+            Stat::make("Today's All Tasks", todaysAllTasks()),
             Stat::make('All Tasks', allTasks()),
         ];
     }
