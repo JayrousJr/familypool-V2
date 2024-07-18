@@ -25,7 +25,7 @@ class TaskResource extends Resource
 
             return static::getModel()::count();
         }
-        return 0;
+        return null;
     }
     protected static ?string $model = Task::class;
     protected static ?string $navigationIcon = 'heroicon-s-cog';
