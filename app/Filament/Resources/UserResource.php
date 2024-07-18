@@ -32,7 +32,7 @@ class UserResource extends Resource
 
             return static::getModel()::count();
         }
-        return 0;
+        return null;
     }
     protected static ?string $model = User::class;
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
