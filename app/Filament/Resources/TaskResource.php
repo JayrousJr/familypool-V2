@@ -20,10 +20,6 @@ use Illuminate\Support\Facades\DB;
 class TaskResource extends Resource
 {
     protected static ?string $model = Task::class;
-    public static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
-    }
     protected static ?string $navigationIcon = 'heroicon-s-cog';
     protected static ?string $navigationGroup = 'Services & Tasks';
     protected static ?int $navigationSort = 2;
