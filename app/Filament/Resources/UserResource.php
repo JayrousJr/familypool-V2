@@ -70,6 +70,7 @@ class UserResource extends Resource
                     ->preload()
                     ->live()
                     ->searchable()
+                    ->hidden(!auth()->user()->isManager())
                     ->reactive()
                     ->afterStateUpdated(function ($state, callable $set) {
                         if (blank($state))
@@ -79,6 +80,7 @@ class UserResource extends Resource
                     }),
                 TextInput::make('role')
                     ->readOnly()
+                    ->hidden(!auth()->user()->isManager())
                     ->required()
                     ->helperText('This is the Role of a person in the system')
                     ->label('Role In the System'),
