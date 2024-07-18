@@ -13,7 +13,7 @@ class GalleryfoPolicy
      */
     public function viewAny(User $user): bool
     {
-        if ($user->hasPermissionTo('Technician Permission') || $user->hasPermissionTo('Manager')) {
+        if ($user->isManager()) {
             return true;
         }
         return false;
@@ -24,7 +24,7 @@ class GalleryfoPolicy
      */
     public function view(User $user, Gallery $gallery): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
+        if ($user->isManager()) {
             return true;
         }
         return false;
@@ -35,7 +35,7 @@ class GalleryfoPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
+        if ($user->isManager()) {
             return true;
         }
         return false;
@@ -46,7 +46,7 @@ class GalleryfoPolicy
      */
     public function update(User $user, Gallery $gallery): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
+        if ($user->isManager()) {
             return true;
         }
         return false;
@@ -57,7 +57,7 @@ class GalleryfoPolicy
      */
     public function delete(User $user, Gallery $gallery): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
+        if ($user->isManager()) {
             return true;
         }
         return false;
@@ -68,7 +68,7 @@ class GalleryfoPolicy
      */
     public function restore(User $user, Gallery $gallery): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
+        if ($user->isManager()) {
             return true;
         }
         return false;
@@ -79,7 +79,7 @@ class GalleryfoPolicy
      */
     public function forceDelete(User $user, Gallery $gallery): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
+        if ($user->isManager()) {
             return true;
         }
         return false;
