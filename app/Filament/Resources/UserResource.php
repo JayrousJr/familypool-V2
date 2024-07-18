@@ -197,7 +197,7 @@ class UserResource extends Resource
         if ($user->isManager()) {
             return $query;
         } else
-            $data = $query->where("user_id", $user->id);
+            $data = $query->where("id", $user->id);
         return $data;
     }
 }
