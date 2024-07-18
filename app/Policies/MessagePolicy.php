@@ -13,7 +13,7 @@ class MessagePolicy
      */
     public function viewAny(User $user): bool
     {
-        if ($user->hasPermissionTo('Technician Permission') || $user->hasPermissionTo('Manager')) {
+        if ($user->isManager()) {
             return true;
         }
         return false;
@@ -24,7 +24,7 @@ class MessagePolicy
      */
     public function view(User $user, Message $message): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
+        if ($user->isManager()) {
             return true;
         }
         return false;
@@ -44,9 +44,7 @@ class MessagePolicy
      */
     public function update(User $user, Message $message): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
-            return true;
-        }
+
         return false;
     }
 
@@ -55,7 +53,7 @@ class MessagePolicy
      */
     public function delete(User $user, Message $message): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
+        if ($user->isManager()) {
             return true;
         }
         return false;
@@ -66,7 +64,7 @@ class MessagePolicy
      */
     public function restore(User $user, Message $message): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
+        if ($user->isManager()) {
             return true;
         }
         return false;
@@ -77,7 +75,7 @@ class MessagePolicy
      */
     public function forceDelete(User $user, Message $message): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
+        if ($user->isManager()) {
             return true;
         }
         return false;
