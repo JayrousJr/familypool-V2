@@ -108,8 +108,4 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasRole(['Manager', 'Administrator']);
     }
-    // public function view()
-    // {
-    //     visitor()->visit();
-    // }
 }

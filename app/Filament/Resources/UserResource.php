@@ -187,9 +187,17 @@ class UserResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()
+        $query =  parent::getEloquentQuery()
             ->withoutGlobalScopes([
                 SoftDeletingScope::class,
             ]);
+
+        $user = auth()->user();
+
+        if ($user->isManager()) {
+            return $query;
+        } else
+            $data = $query->where("user_id", $user->id);
+        return $data;
     }
 }
