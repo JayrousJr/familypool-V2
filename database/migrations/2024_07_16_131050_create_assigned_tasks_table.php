@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service_requests', function (Blueprint $table) {
+        Schema::create('assigned_tasks', function (Blueprint $table) {
             $table->id();
-            $table->boolean("assigned")->default(0);
-            $table->string('name')->index();
-            $table->string('email')->index();
-            $table->string('zip')->index();
-            $table->string('phone')->index();
-            $table->string('service')->index();
-            $table->string('description', 1500);
+            $table->foreignId("task_id")
+                ->constrained("tasks")
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+            $table->text("feedback")->nullable();
+            $table->string("image_before")->nullable();
+            $table->string("image_after")->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('service_requests');
+        Schema::dropIfExists('assigned_tasks');
     }
 };

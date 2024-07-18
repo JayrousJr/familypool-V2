@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Filament\Resources\ServiceRequestResource\Pages;
+namespace App\Filament\Resources\TaskResource\Pages;
 
+use App\Filament\Resources\TaskResource;
 use Filament\Actions;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
-use App\Filament\Resources\ServiceRequestResource;
 
-class EditServiceRequest extends EditRecord
+class EditTask extends EditRecord
 {
-    protected static string $resource = ServiceRequestResource::class;
+    protected static string $resource = TaskResource::class;
 
     protected function getHeaderActions(): array
     {
@@ -28,10 +28,10 @@ class EditServiceRequest extends EditRecord
     {
         return Notification::make()
             ->success()
-            ->title('Service')
+            ->title('Task')
             ->icon('heroicon-o-pencil-square')
             ->iconColor('success')
-            ->body('The Service details have been edited')
+            ->body('The Task details have been edited')
             ->send();
     }
 }

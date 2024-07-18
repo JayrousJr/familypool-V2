@@ -33,6 +33,9 @@ class AdminPanelProvider extends PanelProvider
             // ->plugin(new \RickDBCN\FilamentEmail\FilamentEmail())
             ->colors([
                 'primary' => Color::Blue,
+                'red' => Color::Red,
+                'orange' => Color::Orange,
+                'green' => Color::Green,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

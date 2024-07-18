@@ -97,7 +97,6 @@ class UserResource extends Resource
                     ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file, callable $get): string {
                         $name = $get('email');
                         // $fileName = Str::random(9);
-                        // $name = explode('.', $fileName);
                         return (string) str('profile-photos/profile_' . $name . '.webp');
                     })->label('Profile Image'),
             ]);

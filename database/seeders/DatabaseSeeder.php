@@ -19,13 +19,13 @@ class DatabaseSeeder extends Seeder
             'city' => 'Mwanza',
             'state' => 'Mwanza City',
             'street' => 'Nyasaka',
-            'role' => 'Administrator',
+            'role' => 'Company IT',
             'nationality' => 'Tanzania',
             'password' => bcrypt('password'),
         ]);
         \App\Models\User::factory(4)->create();
         \App\Models\Permission::factory()->create(['name' => 'View Any']);
-        \App\Models\Role::factory()->create(['name' => 'Administrator']);
+        \App\Models\Role::factory()->create(['name' => 'Company IT']);
         \App\Models\Role::factory()->create(['name' => 'Manager']);
         \App\Models\Role::factory()->create(['name' => 'Technician']);
         \App\Models\Permission::factory()->create(['name' => 'Edit About']);
@@ -38,7 +38,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\ClientCategory::factory()->create(['category' => 'Bi-weekly service']);
         \App\Models\ClientCategory::factory()->create(['category' => 'Weekly service']);
         \App\Models\ClientCategory::factory()->create(['category' => 'Monthly service']);
-        \App\Models\ClientCategory::factory()->create(['category' => 'Tri Weekly']);
         \App\Models\Client::factory(20)->create();
     }
 }

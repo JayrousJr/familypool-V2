@@ -19,9 +19,9 @@ class CreateServiceRequest extends CreateRecord
     {
         return Notification::make()
             ->success()
-            ->title('Carousel Image Created')
+            ->title('Service request Created')
             ->icon('heroicon-o-plus')
             ->iconColor('success')
-            ->body('New Image has been created Successifully');
+            ->body('New Service has been created Successifully');
     }
 }

@@ -1,4 +1,5 @@
-<div class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
+<div
+    class="p-6 lg:p-8 bg-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/50 dark:via-transparent border-b border-gray-200 dark:border-gray-700">
     <x-application-logo class="block h-12 w-auto" />
 
     <h1 class="mt-8 text-2xl font-medium text-gray-900 dark:text-white">
@@ -17,8 +18,10 @@
 
     <div>
         <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6 stroke-gray-400">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                class="w-6 h-6 stroke-gray-400">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
             </svg>
             <h2 class="ml-3 text-xl font-semibold text-gray-900 dark:text-white">
                 Family Pool Service
@@ -34,8 +37,7 @@
             things work. But for helping your self, click on your image profile to the left above of the screen and go
             to Profile so as to complete and change your information accordingly. Thank You for Using Family Pool
             Service! </p>
-        @if(Auth::user()->role === 'Manager' || Auth::user()->role === 'Technician' || Auth::user()->role ===
-        'Company IT')
+        @if(auth()->user()->isManager() )
         <p class="mt-4 text-gray-500 dark:text-gray-400 text-md leading-relaxed">
             <a href="{{url('/admin')}}" class="text-white bg-slate-500 px-3 py-2 rounded-md">Visit Admin Panel</a>
         </p>

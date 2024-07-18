@@ -16,9 +16,15 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ServiceRequestResource\Pages;
 use App\Filament\Resources\ServiceRequestResource\RelationManagers;
 use App\Models\Client;
+use App\Models\User;
+use Carbon\Carbon;
+use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
+use Illuminate\Validation\Rules\Unique;
 
 class ServiceRequestResource extends Resource
 {
@@ -28,40 +34,60 @@ class ServiceRequestResource extends Resource
         return static::getModel()::count();
     }
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
-    protected static ?string $navigationGroup = 'Services';
+    protected static ?string $navigationGroup = 'Services & Tasks';
     protected static ?int $navigationSort = 1;
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Select::make('name')
-                    ->label('Client Name')
-                    ->options(Client::where('active', 1)->pluck('name', 'name'))
-                    ->preload()
-                    ->searchable()
-                    ->live()
-                    ->afterStateUpdated(function ($state, callable $set) {
-                        if (empty($state))
-                            return $state;
-                        $user = Client::where("name", $state)->first();
-                        $set("email", $user->name);
-                        $set("zip", $user->zip);
-                        $set("phone", $user->phone);
-                    })
-                    ->required(),
-                TextInput::make('email')
-                    ->label('Client Email'),
-                // ->readOnly(),
-                TextInput::make('zip')
-                    ->required()
-                    ->label("Zip Code"),
-                // ->readOnly(),
-                TextInput::make('phone'),
-                // ->readOnly(),
-                RichEditor::make('service')->maxLength(250),
-                RichEditor::make('description')
-                    ->required()
-                    ->maxLength(1500),
+                Fieldset::make("Customer Information")
+                    ->schema([
+                        Select::make('name')
+                            ->label('Client Name')
+                            ->options(Client::where('active', 1)
+                                ->pluck('name', 'name'))
+                            ->preload()
+                            ->searchable()
+                            ->live()
+                            ->afterStateUpdated(function ($state, callable $set) {
+                                if (empty($state))
+                                    return $state;
+                                $user = Client::where("name", $state)->first();
+                                $set("email", $user->email);
+                                $set("zip", $user->zip);
+                                $set("phone", $user->phone);
+                            })
+
+                            ->required(),
+                        TextInput::make('email')
+                            ->email()
+                            ->label('Client Email'),
+                        TextInput::make('zip')
+                            ->required()
+                            ->label("Zip Code"),
+                        TextInput::make('phone'),
+                        RichEditor::make('service')
+                            ->required()
+                            ->maxLength(250),
+                        RichEditor::make('description')
+                            ->required()
+                            ->maxLength(1500),
+                    ]),
+                // Fieldset::make('Technician Details')
+                //     ->schema([
+                //         Select::make("user_id")
+                //             ->required()
+                //             ->options(User::where("role", "Technician")->pluck("name", "id"))
+                //             ->searchable()
+                //             ->helperText("Select the technician to assign this job")
+                //             ->label("Technician")
+                //             ->afterStateUpdated(function ($state, callable $set) {
+                //                 if (empty($state))
+                //                     return $state;
+                //                 $user = Client::where("name", $state)->first();
+                //                 $set("assigned", 1);
+                //             })
+                //     ])
             ]);
     }
 
@@ -71,6 +97,8 @@ class ServiceRequestResource extends Resource
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+                IconColumn::make('assigned')
+                    ->boolean(),
                 TextColumn::make('service')
                     ->html()
                     ->searchable(),
