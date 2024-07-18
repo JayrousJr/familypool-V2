@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 
-class VisitorOverview extends BaseWidget
+class TasksOverview extends BaseWidget
 {
     protected static bool $isLazy = false;
     protected function getStats(): array
