@@ -19,6 +19,14 @@ use Illuminate\Support\Facades\DB;
 
 class TaskResource extends Resource
 {
+    public static function getNavigationBadge(): ?string
+    {
+        if (auth()->user()->isManager()) {
+
+            return static::getModel()::count();
+        }
+        return 0;
+    }
     protected static ?string $model = Task::class;
     protected static ?string $navigationIcon = 'heroicon-s-cog';
     protected static ?string $navigationGroup = 'Services & Tasks';

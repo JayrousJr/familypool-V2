@@ -28,7 +28,11 @@ class UserResource extends Resource
 {
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count();
+        if (auth()->user()->isManager()) {
+
+            return static::getModel()::count();
+        }
+        return 0;
     }
     protected static ?string $model = User::class;
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
