@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\TaskResource\Pages;
 
 use App\Filament\Resources\TaskResource;
-use App\Filament\Widgets\TasksOverview;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
@@ -20,7 +19,7 @@ class ListTasks extends ListRecords
     protected function getHeaderWidgets(): array
     {
         return [
-            TasksOverview::class,
+            TaskResource\Widgets\TasksOverview::class,
         ];
     }
 }

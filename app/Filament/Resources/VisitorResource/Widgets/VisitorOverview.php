@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\VisitorResource\Widgets;
 
 use Carbon\Carbon;
-use App\Models\Visitor;
 use Illuminate\Support\Facades\DB;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
