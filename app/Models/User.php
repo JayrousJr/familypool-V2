@@ -98,7 +98,7 @@ class User extends Authenticatable implements FilamentUser
 
     public function isIT(): bool
     {
-        return $this->hasRole(['Company IT']);
+        return $this->hasRole(['Administrator']);
     }
     public function isTechnician(): bool
     {
@@ -106,7 +106,7 @@ class User extends Authenticatable implements FilamentUser
     }
     public function isManager(): bool
     {
-        return $this->hasRole(['Manager', 'Company IT']);
+        return $this->hasRole(['Manager', 'Administrator']);
     }
     // public function view()
     // {
