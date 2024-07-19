@@ -28,10 +28,10 @@ class VisitorOverview extends BaseWidget
             ->where('created_at', '>=', $currentDay)
             ->count();
         return [
-            Stat::make('Total Visitors', $totalVisitors),
-            Stat::make('This Month', $monthlyVisitors),
-            Stat::make('This Week', $weeklyVisitors),
             Stat::make('Today', $dailyVisitors),
+            Stat::make('This Week', $weeklyVisitors),
+            Stat::make('This Month', $monthlyVisitors),
+            Stat::make('Total Visitors', $totalVisitors),
         ];
     }
 }
