@@ -18,12 +18,11 @@ use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class GalleryResource extends Resource
 {
-
+    protected static ?string $model = Gallery::class;
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
     }
-    protected static ?string $model = Gallery::class;
     protected static ?string $navigationIcon = 'heroicon-o-camera';
     protected static ?string $navigationGroup = 'Media';
     protected static ?int $navigationSort = 1;
