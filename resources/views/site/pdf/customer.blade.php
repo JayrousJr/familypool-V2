@@ -148,7 +148,7 @@
                     FAMILY POOL SERVICE<br>
                     3529 TALL OAKS CIRCLE APT 5,<br>
                     38118 MEMPHIS TENNESSEE, USA.<br>
-                    WEB: https://thefamilypool.com/<br>
+                    WEB: www.thefamilypool.com<br>
                     Email: familypoolservice2020@gmail.com<br>
                     Tel: +1 (901) 297 7812</p>
                 <div class="image-part">
