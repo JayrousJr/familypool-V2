@@ -11,125 +11,125 @@
     <link rel="stylesheet" href="assets/css/bootstrap.css">
 
     <style media="all">
-    @page {
-        size: A4;
-        margin: 10px 15px;
-    }
+        @page {
+            size: A4;
+            margin: 10px 15px;
+        }
 
-    footer {
-        position: fixed;
-        bottom: 20px;
-        left: 0px;
-        right: 0px;
-        display: inline;
-        border-top: 1px solid black;
-    }
+        footer {
+            position: fixed;
+            bottom: 20px;
+            left: 0px;
+            right: 0px;
+            display: inline;
+            border-top: 1px solid black;
+        }
 
-    .footer1 {
-        float: left;
-        font-size: 12px;
-        text-align: left;
-        font-weight: 500;
-    }
+        .footer1 {
+            float: left;
+            font-size: 12px;
+            text-align: left;
+            font-weight: 500;
+        }
 
-    .footer2 {
-        float: right;
-        display: block;
-        font-size: 12px;
-        text-align: right;
-        margin-left: 250px;
-    }
+        .footer2 {
+            float: right;
+            display: block;
+            font-size: 12px;
+            text-align: right;
+            margin-left: 250px;
+        }
 
 
 
-    @media print {
+        @media print {
 
-        html,
+            html,
+            body {
+                font-family: 'dejavusans';
+                width: 210mm;
+                height: 297mm
+            }
+        }
+
         body {
             font-family: 'dejavusans';
-            width: 210mm;
-            height: 297mm
         }
-    }
 
-    body {
-        font-family: 'dejavusans';
-    }
+        .header-section {
+            text-align: center;
+        }
 
-    .header-section {
-        text-align: center;
-    }
-
-    .header-text {
-        font-size: 22px;
-        color: black;
-    }
+        .header-text {
+            font-size: 22px;
+            color: black;
+        }
 
 
-    .sub-header {
-        font-size: 18px;
-        color: black;
-    }
+        .sub-header {
+            font-size: 18px;
+            color: black;
+        }
 
-    .lower-part {
-        display: inline;
-        /* margin-bottom: 15px; */
-    }
+        .lower-part {
+            display: inline;
+            /* margin-bottom: 15px; */
+        }
 
-    .company-section {
-        border-bottom: 7px solid #389ad2;
-        margin-top: 105px;
-    }
+        .company-section {
+            border-bottom: 7px solid #389ad2;
+            margin-top: 105px;
+        }
 
-    .address {
-        float: left;
-        font-size: 14px;
-    }
+        .address {
+            float: left;
+            font-size: 14px;
+        }
 
-    .image-part {
-        float: right;
-        margin-left: 80%;
-        width: 120px;
-    }
+        .image-part {
+            float: right;
+            margin-left: 80%;
+            width: 120px;
+        }
 
-    .table-container {
-        margin-top: 15px;
-    }
+        .table-container {
+            margin-top: 15px;
+        }
 
-    .tables-row {
-        display: inline;
-    }
+        .tables-row {
+            display: inline;
+        }
 
-    .left {
-        float: left;
-    }
+        .left {
+            float: left;
+        }
 
-    .right {
-        float: right;
-        margin-left: 37%;
-    }
+        .right {
+            float: right;
+            margin-left: 37%;
+        }
 
 
 
-    table {
-        color: #fff;
-        font-family: 'dejavusans';
-        font-size: 12px;
-        background-color: #fff;
-        margin-bottom: 5px;
-    }
+        table {
+            color: #fff;
+            font-family: 'dejavusans';
+            font-size: 12px;
+            background-color: #fff;
+            margin-bottom: 5px;
+        }
 
-    th {
-        border: 1px solid #1381ce;
-        background-color: #389ad2;
-        text-align: center;
-    }
+        th {
+            border: 1px solid #1381ce;
+            background-color: #389ad2;
+            text-align: center;
+        }
 
-    td {
-        color: #000;
-        border: 1px solid #138ace;
-        background-color: #fff;
-    }
+        td {
+            color: #000;
+            border: 1px solid #138ace;
+            background-color: #fff;
+        }
     </style>
 </head>
 
@@ -395,12 +395,12 @@
                             <b>{{ $record->street }} {{ $record->zip }}</b>
                         </td>
 
-                        <td width="220px" colspan="4">Route&nbsp;&nbsp;
+                        <td width="220px" colspan="4">Email: {{$record->email}}&nbsp;&nbsp;
                             <b></b>
                         </td>
                     </tr>
                     <tr>
-                        <td width="220px" colspan="2"></td>
+                        <td width="220px" colspan="2">Phone: {{$record->phone}}</td>
                         <td width="220px" colspan="4">Terms&nbsp;&nbsp;
                             <b></b>
                         </td>
