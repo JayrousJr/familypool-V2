@@ -35,9 +35,9 @@ class JobApplicantsPolicy
      */
     public function create(User $user): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
-            return true;
-        }
+        // if ($user->hasPermissionTo('Manager')) {
+        //     return true;
+        // }
         return false;
     }
 
@@ -46,9 +46,9 @@ class JobApplicantsPolicy
      */
     public function update(User $user, JobApplicants $jobApplicants): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
-            return true;
-        }
+        // if ($user->hasPermissionTo('Manager')) {
+        //     return true;
+        // }
         return false;
     }
 
@@ -57,9 +57,9 @@ class JobApplicantsPolicy
      */
     public function delete(User $user, JobApplicants $jobApplicants): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
-            return true;
-        }
+        // if ($user->hasPermissionTo('Manager')) {
+        //     return true;
+        // }
         return false;
     }
 
@@ -68,9 +68,9 @@ class JobApplicantsPolicy
      */
     public function restore(User $user, JobApplicants $jobApplicants): bool
     {
-        if ($user->hasPermissionTo('Manager')) {
-            return true;
-        }
+        // if ($user->hasPermissionTo('Manager')) {
+        //     return true;
+        // }
         return false;
     }
 

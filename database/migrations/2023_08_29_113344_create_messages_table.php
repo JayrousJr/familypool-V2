@@ -13,25 +13,8 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->UnsignedBigInteger('user_id');
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-            $table->string('token')->unique()->nullable();
             $table->string('name');
-            $table->foreign('name')
-                ->references('name')
-                ->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
             $table->string('email');
-            $table->foreign('email')
-                ->references('email')
-                ->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
             $table->string('subject');
             $table->string('message', 3000);
             $table->timestamps();
