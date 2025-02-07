@@ -28,7 +28,6 @@ class MessageController extends Controller
         if ($validator->fails()) {
             return redirect('/contact#section')->withErrors($validator)->withInput();
         } else {
-
             $formData = new Message();
             $formData->name = request()->name;
             $formData->subject = request()->subject;

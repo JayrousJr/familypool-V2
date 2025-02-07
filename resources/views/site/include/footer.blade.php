@@ -52,9 +52,9 @@
 		            </div>
 		        </div>
 		        <div class="row text-center">
-		            <div class="col-md-6">&copy; TechCLOUDs.Com. </div>
+		            <div class="col-md-6">&copy; Legolas Technologies </div>
 		            <div class="col-md-6">
-		                <a href="mailto:joshuajayrous@gmail.com">Designed By TechClouds Team</a>
+		                <a href="mailto:joshuajayrous@gmail.com">Designed By Legolas Techlogies Team</a>
 		            </div>
 		        </div>
 		    </div>
