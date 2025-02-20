@@ -9,6 +9,22 @@
     <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Overpass:300,400,400i,600,700" rel="stylesheet">
 
+    <meta name="description" content="Family Pool Service is the ">
+    <meta name="keywords" content="Family">
+    <meta name="keywords" content="Pool">
+    <meta name="keywords" content="Service">
+    <meta name="keywords" content="Swimming">
+    <meta name="keywords" content="Cleaning">
+    <meta name="keywords" content="MEMPHIS Pool">
+    <meta name="keywords" content="TENNESSEE Pool">
+    <meta name="keywords" content="Amani Joel">
+    <meta name="keywords" content="3529 TALL OAKS CIRCLE">
+    <meta name="keywords" content="Pool Closing">
+    <meta name="keywords" content="Pool Opening">
+    <meta name="keywords" content="Winterizing">
+    <meta name="keywords" content="Pool Cleaning">
+
+
     <link rel="stylesheet" href="assets/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/animate.css">
@@ -24,132 +40,130 @@
     <link rel="stylesheet" href="assets/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="assets/css/jquery.timepicker.css">
 
-
     <link rel="stylesheet" href="assets/css/flaticon.css">
     <link rel="stylesheet" href="assets/css/icomoon.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/stylesheet.css">
-    <!-- <link rel="stylesheet" href="assets/css/inputs.css"> -->
     <link rel="stylesheet" href="assets/css/callouts.css">
     <link rel="icon" href="/storage/images/logo/logo.png">
 
     <style>
-    /* Center the notification both horizontally and vertically */
-    .notify {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1000;
-        /* Adjust the z-index as needed to ensure it's above other content */
-        padding: 15px;
-        /* Adjust padding to style the notification box */
-        text-align: center;
-        /* Center the text horizontally */
-        width: 300px;
-        /* Set a width for the notification box */
-        background-color: #4CAF50;
-        /* Background color for success */
-        color: #fff;
-        /* Text color */
-        border-radius: 5px;
-        /* Rounded corners for the box */
-    }
+        /* Center the notification both horizontally and vertically */
+        .notify {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            /* Adjust the z-index as needed to ensure it's above other content */
+            padding: 15px;
+            /* Adjust padding to style the notification box */
+            text-align: center;
+            /* Center the text horizontally */
+            width: 300px;
+            /* Set a width for the notification box */
+            background-color: #4CAF50;
+            /* Background color for success */
+            color: #fff;
+            /* Text color */
+            border-radius: 5px;
+            /* Rounded corners for the box */
+        }
 
-    .success {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1000;
-        /* Adjust the z-index as needed to ensure it's above other content */
-        padding: 15px;
-        /* Adjust padding to style the notification box */
-        text-align: center;
-        /* Center the text horizontally */
-        width: 300px;
-        /* Set a width for the notification box */
-        background-color: #4CAF50;
-        /* Background color for success */
-        color: #fff;
-        /* Text color */
-        border-radius: 5px;
-        /* Rounded corners for the box */
-    }
+        .success {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            /* Adjust the z-index as needed to ensure it's above other content */
+            padding: 15px;
+            /* Adjust padding to style the notification box */
+            text-align: center;
+            /* Center the text horizontally */
+            width: 300px;
+            /* Set a width for the notification box */
+            background-color: #4CAF50;
+            /* Background color for success */
+            color: #fff;
+            /* Text color */
+            border-radius: 5px;
+            /* Rounded corners for the box */
+        }
 
-    .error {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1000;
-        /* Adjust the z-index as needed to ensure it's above other content */
-        padding: 15px;
-        /* Adjust padding to style the notification box */
-        text-align: center;
-        /* Center the text horizontally */
-        width: 300px;
-        /* Set a width for the notification box */
-        background-color: #cf2424;
-        /* Background color for success */
-        color: #fff;
-        /* Text color */
-        border-radius: 5px;
-        /* Rounded corners for the box */
-    }
+        .error {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            /* Adjust the z-index as needed to ensure it's above other content */
+            padding: 15px;
+            /* Adjust padding to style the notification box */
+            text-align: center;
+            /* Center the text horizontally */
+            width: 300px;
+            /* Set a width for the notification box */
+            background-color: #cf2424;
+            /* Background color for success */
+            color: #fff;
+            /* Text color */
+            border-radius: 5px;
+            /* Rounded corners for the box */
+        }
 
-    .profile-image {
-        width: 30px;
-        height: 30px;
-        background-size: contain;
-        background-position: center;
-        border-radius: 50%;
-        outline: 1px solid white;
-    }
+        .profile-image {
+            width: 30px;
+            height: 30px;
+            background-size: contain;
+            background-position: center;
+            border-radius: 50%;
+            outline: 1px solid white;
+        }
 
-    .profile-image :hover {
-        outline: 2px solid white;
-        transition: cubic-bezier(0.075, 0.82, 0.165, 1)
-    }
+        .profile-image :hover {
+            outline: 2px solid white;
+            transition: cubic-bezier(0.075, 0.82, 0.165, 1)
+        }
 
 
 
-    .user-profile li {
-        list-style: none;
-        padding-top: 4px;
-    }
+        .user-profile li {
+            list-style: none;
+            padding-top: 4px;
+        }
 
-    .dropdown-menu {
-        margin-left: -20px;
-    }
+        .dropdown-menu {
+            margin-left: -20px;
+        }
 
-    li a {
-        color: blue
-    }
+        li a {
+            color: blue
+        }
 
-    .user-icon .icon {
-        font-size: 2em;
-    }
+        .user-icon .icon {
+            font-size: 2em;
+        }
 
-    .navt {
-        position: absolute;
-        right: 1em;
-        top: 1em;
-    }
-
-    .profile {
-        position: absolute;
-        left: 35%;
-        top: 1em;
-    }
-
-    @media (max-width: 600px) {
-        .profile {
+        .navt {
             position: absolute;
-            left: 10em;
+            right: 1em;
             top: 1em;
         }
-    }
+
+        .profile {
+            position: absolute;
+            left: 35%;
+            top: 1em;
+        }
+
+        @media (max-width: 600px) {
+            .profile {
+                position: absolute;
+                left: 10em;
+                top: 1em;
+            }
+        }
     </style>
 
 
