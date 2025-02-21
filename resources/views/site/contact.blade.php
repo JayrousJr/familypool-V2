@@ -130,7 +130,7 @@
                             <!-- width="600" height="450" -->
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3266.1579447075483!2d-89.90114842477824!3d35.05279006424082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x887f85907027c2e1%3A0xc72984200ae777fe!2s3529%20Tall%20Oaks%20Cir%2C%20Memphis%2C%20TN%2038118%2C%20USA!5e0!3m2!1sen!2stz!4v1740123462866!5m2!1sen!2stz"
-                                style="border:0;" allowfullscreen="" loading="lazy"
+                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
