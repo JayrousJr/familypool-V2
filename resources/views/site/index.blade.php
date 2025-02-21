@@ -1,6 +1,7 @@
 @include('/site/include/header')
 
-<div class="hero-wrap" style="background-image: url('storage/images/backgrounds/background4.jpg');" data-stellar-background-ratio="0.5">
+<div class="hero-wrap" style="background-image: url('storage/images/backgrounds/background4.jpg');"
+    data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
 
@@ -14,7 +15,8 @@
             <button id="close">&times;</button>
             <h2>{{$popup->head}}</h2>
             <p>{!! $popup->body!!}</p>
-            <a href="" aria-label="close" data-toggle="modal" class="btn-ask" data-target="#askservice" onclick="closePopup()">{{$popup->action}}</a>
+            <a href="" aria-label="close" data-toggle="modal" class="btn-ask" data-target="#askservice"
+                onclick="closePopup()">{{$popup->action}}</a>
             @endif
             @endforeach
         </div>
