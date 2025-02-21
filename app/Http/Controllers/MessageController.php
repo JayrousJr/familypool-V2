@@ -45,7 +45,7 @@ class MessageController extends Controller
                 Mail::to($mailto)->cc($amani)->send(new MessageSent($formData));
                 Mail::to($formData->email)->send(new MessageReceived($formData));
                 DB::commit();
-                return redirect('/contact#notification');
+                return redirect('/');
             }
         } catch (\Throwable $th) {
             DB::rollBack();

@@ -20,7 +20,7 @@
             @endif
             @endforeach
         </div>
-        <div id="popup" class="popup">
+        <div id="session" class="popup">
             <span id="popup-message"></span>
         </div>
         <!-- @if(session('message'))
