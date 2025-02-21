@@ -2,12 +2,14 @@
 
 <!-- END nav -->
 
-<div class="hero-wrap" style="background-image: url('/storage/images/backgrounds/background4.jpg');" data-stellar-background-ratio="0.5">
+<div class="hero-wrap" style="background-image: url('/storage/images/backgrounds/background4.jpg');"
+    data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
             <div class="col-md-7 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
-                <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.php">Home</a></span> <span>Contact</span></p>
+                <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span
+                        class="mr-2"><a href="index.php">Home</a></span> <span>Contact</span></p>
                 <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Contact
                     Us</h1>
             </div>
@@ -58,7 +60,8 @@
                     <div class="row gx-3 gy-2 align-items-center mb-3">
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" name="name" id="inputFloating" placeholder="00000000" class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}">
+                                <input type="text" name="name" id="inputFloating" placeholder="00000000"
+                                    class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}">
                                 <label for="inputFloating">Full Name </label>
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -69,7 +72,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="email" name="email" id="inputFloating" placeholder="Email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}">
+                                <input type="email" name="email" id="inputFloating" placeholder="Email"
+                                    class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}">
                                 <label for="inputFloating">Email </label>
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -82,7 +86,9 @@
                     <div class="row gx-3 gy-2 align-items-center mb-3">
                         <div class="col-md-12">
                             <div class="form-floating">
-                                <input type="text" name="subject" id="inputFloating" placeholder="Subject" class="form-control @error('subject') is-invalid @enderror" value="{{old('subject')}}">
+                                <input type="text" name="subject" id="inputFloating" placeholder="Subject"
+                                    class="form-control @error('subject') is-invalid @enderror"
+                                    value="{{old('subject')}}">
                                 <label for="inputFloating">Subjet </label>
                                 @error('subject')
                                 <span class="invalid-feedback" role="alert">
@@ -93,7 +99,9 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-floating txtlabel">
-                                <textarea name="message" class="form-control  @error('name') is-invalid @enderror" id="inputFloating" style="height: 100px;" placeholder="Message">{{old('message')}}</textarea>
+                                <textarea name="message" class="form-control  @error('name') is-invalid @enderror"
+                                    id="inputFloating" style="height: 100px;"
+                                    placeholder="Message">{{old('message')}}</textarea>
                                 <label for="inputFloating">Describe your service</label>
                                 @error('message')
                                 <span class="invalid-feedback" role="alert">
@@ -116,7 +124,14 @@
                 <div id="googleMap">
                     <div class="mapouter">
                         <div class="gmap_canvas">
-                            <iframe width="100%" height="377px" id="gmap_canvas" src="https://maps.google.com/maps?q=7420%20doncaster%20lane&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                            <!-- <iframe width="100%" height="377px" id="gmap_canvas"
+                                src="https://maps.google.com/maps?q=7420%20doncaster%20lane&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe> -->
+                            <!-- width="600" height="450" -->
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3266.1579447075483!2d-89.90114842477824!3d35.05279006424082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x887f85907027c2e1%3A0xc72984200ae777fe!2s3529%20Tall%20Oaks%20Cir%2C%20Memphis%2C%20TN%2038118%2C%20USA!5e0!3m2!1sen!2stz!4v1740123462866!5m2!1sen!2stz"
+                                style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>

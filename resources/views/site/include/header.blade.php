@@ -48,122 +48,122 @@
     <link rel="icon" href="/storage/images/logo/logo.png">
 
     <style>
-        /* Center the notification both horizontally and vertically */
-        .notify {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-            /* Adjust the z-index as needed to ensure it's above other content */
-            padding: 15px;
-            /* Adjust padding to style the notification box */
-            text-align: center;
-            /* Center the text horizontally */
-            width: 300px;
-            /* Set a width for the notification box */
-            background-color: #4CAF50;
-            /* Background color for success */
-            color: #fff;
-            /* Text color */
-            border-radius: 5px;
-            /* Rounded corners for the box */
-        }
+    /* Center the notification both horizontally and vertically */
+    .notify {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        /* Adjust the z-index as needed to ensure it's above other content */
+        padding: 15px;
+        /* Adjust padding to style the notification box */
+        text-align: center;
+        /* Center the text horizontally */
+        width: 300px;
+        /* Set a width for the notification box */
+        background-color: #4CAF50;
+        /* Background color for success */
+        color: #fff;
+        /* Text color */
+        border-radius: 5px;
+        /* Rounded corners for the box */
+    }
 
-        .success {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-            /* Adjust the z-index as needed to ensure it's above other content */
-            padding: 15px;
-            /* Adjust padding to style the notification box */
-            text-align: center;
-            /* Center the text horizontally */
-            width: 300px;
-            /* Set a width for the notification box */
-            background-color: #4CAF50;
-            /* Background color for success */
-            color: #fff;
-            /* Text color */
-            border-radius: 5px;
-            /* Rounded corners for the box */
-        }
+    .success {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        /* Adjust the z-index as needed to ensure it's above other content */
+        padding: 15px;
+        /* Adjust padding to style the notification box */
+        text-align: center;
+        /* Center the text horizontally */
+        width: 300px;
+        /* Set a width for the notification box */
+        background-color: #4CAF50;
+        /* Background color for success */
+        color: #fff;
+        /* Text color */
+        border-radius: 5px;
+        /* Rounded corners for the box */
+    }
 
-        .error {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000;
-            /* Adjust the z-index as needed to ensure it's above other content */
-            padding: 15px;
-            /* Adjust padding to style the notification box */
-            text-align: center;
-            /* Center the text horizontally */
-            width: 300px;
-            /* Set a width for the notification box */
-            background-color: #cf2424;
-            /* Background color for success */
-            color: #fff;
-            /* Text color */
-            border-radius: 5px;
-            /* Rounded corners for the box */
-        }
+    .error {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        /* Adjust the z-index as needed to ensure it's above other content */
+        padding: 15px;
+        /* Adjust padding to style the notification box */
+        text-align: center;
+        /* Center the text horizontally */
+        width: 300px;
+        /* Set a width for the notification box */
+        background-color: #cf2424;
+        /* Background color for success */
+        color: #fff;
+        /* Text color */
+        border-radius: 5px;
+        /* Rounded corners for the box */
+    }
 
-        .profile-image {
-            width: 30px;
-            height: 30px;
-            background-size: contain;
-            background-position: center;
-            border-radius: 50%;
-            outline: 1px solid white;
-        }
+    .profile-image {
+        width: 30px;
+        height: 30px;
+        background-size: contain;
+        background-position: center;
+        border-radius: 50%;
+        outline: 1px solid white;
+    }
 
-        .profile-image :hover {
-            outline: 2px solid white;
-            transition: cubic-bezier(0.075, 0.82, 0.165, 1)
-        }
+    .profile-image :hover {
+        outline: 2px solid white;
+        transition: cubic-bezier(0.075, 0.82, 0.165, 1)
+    }
 
 
 
-        .user-profile li {
-            list-style: none;
-            padding-top: 4px;
-        }
+    .user-profile li {
+        list-style: none;
+        padding-top: 4px;
+    }
 
-        .dropdown-menu {
-            margin-left: -20px;
-        }
+    .dropdown-menu {
+        margin-left: -20px;
+    }
 
-        li a {
-            color: blue
-        }
+    li a {
+        color: blue
+    }
 
-        .user-icon .icon {
-            font-size: 2em;
-        }
+    .user-icon .icon {
+        font-size: 2em;
+    }
 
-        .navt {
-            position: absolute;
-            right: 1em;
-            top: 1em;
-        }
+    .navt {
+        position: absolute;
+        right: 1em;
+        top: 1em;
+    }
 
+    .profile {
+        position: absolute;
+        left: 35%;
+        top: 1em;
+    }
+
+    @media (max-width: 600px) {
         .profile {
             position: absolute;
-            left: 35%;
+            left: 10em;
             top: 1em;
         }
-
-        @media (max-width: 600px) {
-            .profile {
-                position: absolute;
-                left: 10em;
-                top: 1em;
-            }
-        }
+    }
     </style>
 
 
@@ -223,9 +223,9 @@
                         <a class="dropdown-item" href="{{route('login')}}">Log In</a>
                     </li>
                     <div class="dropdown-divider"></div>
-                    <li>
+                    <!-- <li>
                         <a class="dropdown-item" href="{{ url('/register') }}">Sign Up</a>
-                    </li>
+                    </li> -->
                 </ul>
                 @endauth
             </div>
