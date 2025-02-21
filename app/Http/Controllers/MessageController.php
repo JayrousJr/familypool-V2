@@ -49,7 +49,7 @@ class MessageController extends Controller
             }
         } catch (\Throwable $th) {
             DB::rollBack();
-            session()->flash('message', 'There was an error please try again after a moment');
+            session()->flash('error', 'There was an error please try again after a moment');
         }
     }
 }
