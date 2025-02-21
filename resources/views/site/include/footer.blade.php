@@ -1,73 +1,73 @@
 		<footer class="ftco-footer ftco-section img">
-			<div class="container">
-				<div class="row mb-5">
-					<div class="col-md-4">
-						<div class="ftco-footer-widget mb-4">
-							<h2 class="ftco-heading-2">About Us</h2>
-							@foreach($abouts as $about)
-							<p> {!! $about->about_us !!}</p>
-							@endforeach
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="ftco-footer-widget mb-4">
-							<h2 class="ftco-heading-2">Social Media</h2>
-							Get in touch with us in our social media links any time to get more information with from us so
-							don't lose our contact.</p>
-							<ul class="ftco-footer-social list-unstyled float-lft mt-5">
-								@foreach($socialnetwork as $network)
-								<li class="ftco-animate"><a href="{{$network->link}}" target="_blank"><span
-											class="icon-{{$network->icon}}">
-										</span></a>
-								</li>
-								@endforeach
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="ftco-footer-widget mb-4">
-							<h2 class="ftco-heading-2">Get Connected</h2>
-							<div class="block-23 mb-3">
-								@foreach($infos as $info)
-								<ul>
-									<li><span class="icon icon-map-marker"></span><span
-											class="text">{{$info->address}},</span>
-									</li>
-									<li><span class="icon icon-map-marker"></span><span class="text">{{$info->city}},
-											{{$info->country}}.</span></li>
-									<li><a href="tel:{{$info->phone}}"><span class="icon icon-phone"></span><span
-												class="text">{{$info->phone}}.</span></a></li>
-									<li><a href="mailto:{{$info->email_two}}"><span class="icon icon-envelope"></span> <span
-												class="text">
-												{{$info->email_two}}</span></a>
-									</li>
-									<li><a href="mailto:{{$info->email_one}}"><span class="icon icon-envelope"></span> <span
-												class="text">
-												{{$info->email_one}}</span></a>
-									</li>
-								</ul>
-								@endforeach
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row text-center">
-					<div class="col-md-6">&copy; Legolas Technologies </div>
-					<div class="col-md-6">
-						<a href="mailto:joshuajayrous@gmail.com">Designed By Legolas Techlogies Team</a>
-					</div>
-				</div>
-			</div>
+		    <div class="container">
+		        <div class="row mb-5">
+		            <div class="col-md-4">
+		                <div class="ftco-footer-widget mb-4">
+		                    <h2 class="ftco-heading-2">About Us</h2>
+		                    @foreach($abouts as $about)
+		                    <p> {!! $about->about_us !!}</p>
+		                    @endforeach
+		                </div>
+		            </div>
+		            <div class="col-md-4">
+		                <div class="ftco-footer-widget mb-4">
+		                    <h2 class="ftco-heading-2">Social Media</h2>
+		                    Get in touch with us in our social media links any time to get more information with from us so
+		                    don't lose our contact.</p>
+		                    <ul class="ftco-footer-social list-unstyled float-lft mt-5">
+		                        @foreach($socialnetwork as $network)
+		                        <li class="ftco-animate"><a href="{{$network->link}}" target="_blank"><span
+		                                    class="icon-{{$network->icon}}">
+		                                </span></a>
+		                        </li>
+		                        @endforeach
+		                    </ul>
+		                </div>
+		            </div>
+		            <div class="col-md-4">
+		                <div class="ftco-footer-widget mb-4">
+		                    <h2 class="ftco-heading-2">Get Connected</h2>
+		                    <div class="block-23 mb-3">
+		                        @foreach($infos as $info)
+		                        <ul>
+		                            <li><span class="icon icon-map-marker"></span><span
+		                                    class="text">{{$info->address}},</span>
+		                            </li>
+		                            <li><span class="icon icon-map-marker"></span><span class="text">{{$info->city}},
+		                                    {{$info->country}}.</span></li>
+		                            <li><a href="tel:{{$info->phone}}"><span class="icon icon-phone"></span><span
+		                                        class="text">{{$info->phone}}.</span></a></li>
+		                            <li><a href="mailto:{{$info->email_two}}"><span class="icon icon-envelope"></span> <span
+		                                        class="text">
+		                                        {{$info->email_two}}</span></a>
+		                            </li>
+		                            <li><a href="mailto:{{$info->email_one}}"><span class="icon icon-envelope"></span> <span
+		                                        class="text">
+		                                        {{$info->email_one}}</span></a>
+		                            </li>
+		                        </ul>
+		                        @endforeach
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		        <div class="row text-center">
+		            <div class="col-md-6">&copy; Legolas Technologies </div>
+		            <div class="col-md-6">
+		                <a href="mailto:joshuajayrous@gmail.com">Designed By Legolas Techlogies Team</a>
+		            </div>
+		        </div>
+		    </div>
 		</footer>
 
 
 
 		<!-- loader -->
 		<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-				<circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-				<circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-					stroke="#007bff" />
-			</svg></div>
+		        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+		        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+		            stroke="#007bff" />
+		    </svg></div>
 
 
 		<script src="assets/js/jquery.min.js"></script>
@@ -92,23 +92,23 @@
 		<script src="assets/js/main.js"></script>
 		<script src="assets/js/formvalidate0101.js"></script>
 		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9915471855000165"
-			crossorigin="anonymous"></script>
+		    crossorigin="anonymous"></script>
 
 
 		<script>
-			$(document).ready(function() {
-				//hide the notification after 2seconds  
-				setTimeout(function() {
-					$("#notification").fadeOut('slow');
-				}, 15000);
-			});
+$(document).ready(function() {
+    //hide the notification after 2seconds  
+    setTimeout(function() {
+        $("#notification").fadeOut('slow');
+    }, 10000);
+});
 
-			$(document).ready(function() {
-				//hide the notification after 2seconds  
-				setTimeout(function() {
-					$("#message").fadeOut('slow');
-				}, 5000);
-			});
+$(document).ready(function() {
+    //hide the notification after 2seconds  
+    setTimeout(function() {
+        $("#message").fadeOut('slow');
+    }, 5000);
+});
 		</script>
 
 		<!-- <script>
