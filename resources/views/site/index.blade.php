@@ -21,12 +21,12 @@
             @endforeach
         </div>
         @if(session('message'))
-        <div class="success" id="popup">
+        <div class="success" id="message">
             {{@session('message')}}
         </div>
         @endif
         @if(session('error'))
-        <div class="error" id="popup">
+        <div class="error" id="message">
             {{@session('error')}}
         </div>
         @endif
