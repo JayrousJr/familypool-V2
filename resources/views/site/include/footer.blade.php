@@ -69,7 +69,29 @@
 		            stroke="#007bff" />
 		    </svg></div>
 
+		<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let popup = document.getElementById("session");
+    let popupMessage = document.getElementById("popup-message");
 
+    // Laravel session message passed via Blade
+    let message = "{{ session('message') }}";
+    let error = "{{ session('error') }}"
+
+    let data = message ? message : error;
+
+    // Check if message exists and is not empty
+    if (data.trim() !== "") {
+        popupMessage.textContent = data;
+        popup.style.display = "block";
+
+        // Hide after 3 seconds
+        setTimeout(() => {
+            popup.style.display = "none";
+        }, 3000);
+    }
+});
+		</script>
 		<script src="assets/js/jquery.min.js"></script>
 		<script src="assets/js/jquery-migrate-3.0.1.min.js"></script>
 		<script src="assets/js/popper.min.js"></script>

@@ -20,7 +20,10 @@
             @endif
             @endforeach
         </div>
-        @if(session('message'))
+        <div id="popup" class="popup">
+            <span id="popup-message"></span>
+        </div>
+        <!-- @if(session('message'))
         <div class="success" id="session">
             {{@session('message')}}
         </div>
@@ -29,7 +32,7 @@
         <div class="error" id="session">
             {{@session('error')}}
         </div>
-        @endif
+        @endif -->
         <!--popup news, success and error messages-->
 
 
