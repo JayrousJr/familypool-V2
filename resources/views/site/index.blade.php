@@ -20,19 +20,20 @@
             @endif
             @endforeach
         </div>
-        <div id="session" class="popup">
+        <!-- <div id="session" class="popup">
+            <span id="popup-message"></span>
+        </div> -->
+
+        @if(session('message'))
+        <div id="session" class="success">
             <span id="popup-message"></span>
         </div>
-        <!-- @if(session('message'))
-        <div class="success" id="session">
-            {{@session('message')}}
-        </div>
         @endif
+
         @if(session('error'))
-        <div class="error" id="session">
-            {{@session('error')}}
+        <div id="session" class="error">
+            <span id="popup-message"></span>
         </div>
-        @endif -->
         <!--popup news, success and error messages-->
 
 
