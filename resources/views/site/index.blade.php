@@ -34,6 +34,7 @@
         <div id="session" class="error">
             <span id="popup-message"></span>
         </div>
+        @endif
         <!--popup news, success and error messages-->
 
 
