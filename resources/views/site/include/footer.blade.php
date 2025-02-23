@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Hide after 3 seconds
         setTimeout(() => {
             popup.style.display = "none";
-        }, 3000);
+        }, 50000);
     }
 });
 		</script>
@@ -115,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		<script src="assets/js/formvalidate0101.js"></script>
 		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9915471855000165"
 		    crossorigin="anonymous"></script>
+
 		<script>
 document.addEventListener("DOMContentLoaded", function() {
     let popup = document.getElementById("session");
