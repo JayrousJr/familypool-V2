@@ -58,6 +58,7 @@ class ServiceRequestController extends Controller
             session()->flash('message', 'You have Successiful applied for the service');
             return redirect('/');
         } catch (ValidationException $e) {
+            session()->flash('message', 'Sorry an error occured');
             return redirect()->route('/service-request')->withErrors($e->validator)->withInput();
         }
     }
