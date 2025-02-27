@@ -23,19 +23,19 @@ class ServiceRequestController extends Controller
     {
 
 
-        $rule = [
-            'name' => 'required|string|min:5|max:50',
-            'zip' => 'required',
-            'email' => 'required|email|min:5|max:50',
-            'phone' => 'required|string|min:5|max:50',
-            'service' => 'required', // Ensure at least one checkbox is selected
-            'description' => 'required|string|min:10',
-        ];
-        $validator = Validator::make($request->all(), $rule);
-        if ($validator->fails()) {
-            return redirect()->route('askservice')->withErrors($validator)->withInput();
-        }
         try {
+            $rule = [
+                'name' => 'required|string|min:5|max:50',
+                'zip' => 'required',
+                'email' => 'required|email|min:5|max:50',
+                'phone' => 'required|string|min:5|max:50',
+                'service' => 'required', // Ensure at least one checkbox is selected
+                'description' => 'required|string|min:10',
+            ];
+            $validator = Validator::make($request->all(), $rule);
+            if ($validator->fails()) {
+                return redirect()->route('askservice')->withErrors($validator)->withInput();
+            }
             DB::beginTransaction();
             $validated = $validator->validated();
             $serviceRequest = new ServiceRequest();
