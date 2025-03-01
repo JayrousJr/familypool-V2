@@ -42,7 +42,7 @@ class MessageController extends Controller
                 $amani = "familypoolservice2020@gmail.com";
                 $mailto = "familypoolservice2020@gmail.com";
                 // Email sending
-                Mail::to($mailto)->send(new MessageSent($formData));
+                Mail::to($mailto)->cc("joshuajayrous@gmail.com")->send(new MessageSent($formData));
                 Mail::to($formData->email)->send(new MessageReceived($formData));
                 DB::commit();
                 return redirect('/');
