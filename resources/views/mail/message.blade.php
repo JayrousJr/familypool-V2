@@ -1,5 +1,3 @@
-
-
 <x-mail::message>
 # Message From <strong>{{$name}}</strong><br>
 <x-mail::panel>
