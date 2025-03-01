@@ -40,7 +40,7 @@ class ServiceSent extends Mailable
         return new Content(
             markdown: 'mail.service.sent',
             with: [
-                'name' => $this->serviceRequest->name,
+                'cusName' => $this->serviceRequest->name,
                 'email' => $this->serviceRequest->email,
                 'phone' => $this->serviceRequest->phone,
                 'service' => $this->serviceRequest->service,
