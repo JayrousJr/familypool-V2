@@ -48,9 +48,8 @@ class ServiceRequestController extends Controller
             $serviceRequest->description = ($request->input('description'));
 
             $serviceRequest->save();
-            $mailto = 'info@thefamilypool.com';
-            $mailto = 'familypoolservice2020@gmail.com';
             $amani = "familypoolservice2020@gmail.com";
+            $mailto = "familypoolservice2020@gmail.com";
             Mail::to($mailto)->send(new ServiceSent($serviceRequest));
             // Mail::to($mailto)->cc($amani)->send(new ServiceSent($serviceRequest));
             Mail::to($serviceRequest->email)->cc($amani)->send(new ServiceReply($serviceRequest));

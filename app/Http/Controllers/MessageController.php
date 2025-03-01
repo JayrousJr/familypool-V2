@@ -39,9 +39,8 @@ class MessageController extends Controller
                 $formData->save();
                 session()->flash('message', 'Thanks for Contacting Family Pool Service, Your Message was Sent Successiful!');
 
-                $mailto = 'info@thefamilypool.com';
-                $mailto = 'familypoolservice2020@gmail.com';
                 $amani = "familypoolservice2020@gmail.com";
+                $mailto = "familypoolservice2020@gmail.com";
                 // Email sending
                 Mail::to($mailto)->send(new MessageSent($formData));
                 Mail::to($formData->email)->send(new MessageReceived($formData));
@@ -50,7 +49,7 @@ class MessageController extends Controller
             }
         } catch (\Throwable $th) {
             DB::rollBack();
-            session()->flash('error', 'There was an error please try again after a moment ' . $th->getMessage());
+            // session()->flash('error', 'There was an error please try again after a moment ' . $th->getMessage());
             return redirect('/');
         }
     }
