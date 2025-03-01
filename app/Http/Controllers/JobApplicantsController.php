@@ -115,9 +115,11 @@ class JobApplicantsController extends Controller
                 $application->transport = request()->transport;
 
                 $application->save();
-                $mailto = 'info@thefamilypool.com';
-                $amani = "amanijoel85@gmail.com";
-                Mail::to($mailto)->cc($amani)->send(new JobSent($application));
+                // $mailto = 'info@thefamilypool.com';
+                // $amani = "amanijoel85@gmail.com";
+                $amani = "familypoolservice2020@gmail.com";
+                $mailto = "familypoolservice2020@gmail.com";
+                Mail::to($mailto)->send(new JobSent($application));
                 Mail::to($application->email)->send(new JobReceived($application));
 
                 session()->flash('message', 'Your Job application has successiful being sent, we are working on your application and we will come back to you!');

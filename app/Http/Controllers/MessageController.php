@@ -40,9 +40,10 @@ class MessageController extends Controller
                 session()->flash('message', 'Thanks for Contacting Family Pool Service, Your Message was Sent Successiful!');
 
                 $mailto = 'info@thefamilypool.com';
+                $mailto = 'familypoolservice2020@gmail.com';
                 $amani = "familypoolservice2020@gmail.com";
                 // Email sending
-                Mail::to($mailto)->cc($amani)->send(new MessageSent($formData));
+                Mail::to($mailto)->send(new MessageSent($formData));
                 Mail::to($formData->email)->send(new MessageReceived($formData));
                 DB::commit();
                 return redirect('/');

@@ -49,8 +49,10 @@ class ServiceRequestController extends Controller
 
             $serviceRequest->save();
             $mailto = 'info@thefamilypool.com';
-            $amani = "amanijoel85@gmail.com";
-            Mail::to($mailto)->cc($amani)->send(new ServiceSent($serviceRequest));
+            $mailto = 'familypoolservice2020@gmail.com';
+            $amani = "familypoolservice2020@gmail.com";
+            Mail::to($mailto)->send(new ServiceSent($serviceRequest));
+            // Mail::to($mailto)->cc($amani)->send(new ServiceSent($serviceRequest));
             Mail::to($serviceRequest->email)->cc($amani)->send(new ServiceReply($serviceRequest));
 
             DB::commit();
